@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li class="selected"><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>23/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Barplot, boxplot, pairs y par</h2>
+
+	<h3>Barplot</h3>
+	<p>Esta función genera gráficos de barras en muy diversas formas.</p>
+	
+	
+	<br>
+	<p>Buscamos información acerca de sus parámetros con la ayuda de <i>help</i>
+	<!--begin.rcode
+	help(barplot)
+	end.rcode-->
+
+	<br>
+	<p>Se puede usar para pequeños representaciones o para problemas más complejos</p>
+
+	<!--begin.rcode
+	x<-c(1,1,5,5,2,3,8,1)
+	barplot(x, main="x", col="orange")
+	end.rcode-->
+
+
+	<br>
+	<p>Imaginemos que tenemos guardada la información acerca de
+	las edades de una familia y queremos representarla </p>
+	
+	<!--begin.rcode
+	edad_familiar<-c(12,15,21,52,50)
+	barplot(edad_familiar, main="Edades Familia", col="black", xlab="Nombre", 
+			ylab="Edad",names.arg=c("Adolfo", "Ana", "Juan", "Agatha", "Antonio"))
+	end.rcode-->
+
+	<br>
+	<p><i>Barplot</i> también nos ofrece la posibilidad de poner el gráfico en horizontal: </p>
+
+	<!--begin.rcode
+	max.temp <- c(22, 27, 26, 24, 23, 26, 28)
+	barplot(max.temp, main = "Temperaturas máximas de la semana", xlab = "Grados", ylab = "Dia", 
+	names.arg = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"), col = "darkred", horiz = TRUE)
+	end.rcode-->
+
+
+	<br>
+	<p>Se ha programado una función que simula el lanzamiento de una moneda.
+	Ponemos el código a continuación y representamos el número de tiradas en 
+	un diagrama de barras:</p>
+	<!--begin.rcode
+	# 1/6000 de prob. de salir canto
+	canto<-function(){
+ 	v<-sample(6000,1)
+  	if(v==1)
+    		return(TRUE)
+ 	return(FALSE)
+	}
+
+	Lanz_moneda<-function(n=10){
+ 	cara=0
+  	cruz=0
+  	canto=0
+  	for(i in 1:n){
+    		if(canto()==TRUE)
+      			canto=canto+1
+    		else{
+      			random=sample(c(0,1), size=1)
+      			if(random==0)
+        			cara=cara+1
+     			else
+        			cruz=cruz+1
+    		}
+ 	}
+  	return(c(cara, cruz, canto))
+	}
+	end.rcode-->
+
+
+	<!--begin.rcode
+	barplot(Lanz_moneda(5), names.arg = c("cara","cruz","canto"), main="Lanzamiendo de 5 monedas",
+                    ylab = "Número de apariciones", col = c("orange", "black","seagreen"))
+	end.rcode-->
+
+
+	<!--begin.rcode
+	barplot(Lanz_moneda(100), names.arg = c("cara","cruz","canto"), main="Lanzamiendo de 100 monedas",
+                    ylab = "Número de apariciones", col = c("orange", "black","seagreen"))
+	end.rcode-->
+
+
+	<h3>Boxplot</h3>
+	<p>Esta función realiza gráficos de caja con bigotes
+	<i>box-and-whisker</i> </p>
+
+
+	<br>
+	<p>Procedemos a realizar pruebas con esta función y, por ello, introducimos
+	un nuevo dataset llamado <i>airquality</i> 
+	
+	<!--begin.rcode
+	plot(airquality)
+	end.rcode-->
+
+	<br>
+	<p>Realizamos un simple boxplot de los datos del viento:
+	<!--begin.rcode
+	boxplot(airquality$Wind)
+	end.rcode-->
+
+	<p>Podemos ver la dispersión de los datos y los outliers presentes.
+	Por otro lado, podemos dibujar la gráfica horizontalmente
+
+
+	<!--begin.rcode
+	boxplot(airquality$Temp, main="Temperatura", col="orange", border="black", horizontal=TRUE)
+	boxplot(airquality$Ozone, main = "Ozono", ylab = "Ozono",
+		col = "orange", border = "brown", horizontal = TRUE, notch = TRUE)	
+	end.rcode-->
+
+
+	<br>
+	<p>A continuación, mostramos diferentes boxplot, cada uno referente a un mes del dataset con el que estamos trabajando. </p>
+	<!--begin.rcode
+boxplot(Temp~Month, data=airquality, main="Boxplots para cada mes", 
+		xlab="Mes", ylab="Grados Fahrenheit", col="orange", border="black")
+	end.rcode-->
+
+
+
+
+	<h3>Pairs</h3>
+	<p>Esta función genérica, crea una figura que contiene todos
+	los diagramas de dispersión de cada variable frente a las restantes.</p>
+
+	<br>
+	<p>Leemos el archivo <i>Datos2.txt</i> proporcionado.</p>
+	<!--begin.rcode
+	datos2<-read.csv("Datos2.txt", header=TRUE, sep=" ")
+	library(dplyr)
+	datos2_mod<-select(datos2, Peso, Altura, Edad, Sexo)
+
+	pairs(datos2_mod)
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	panel.hist<-function(x,...){
+		usr<-par("usr"); on.exit(par(usr))
+		par(usr=c(usr[1:2],0,1.5) )
+		h<-hist(x,plot=FALSE)
+		breaks<-h$breaks; nB<-length(breaks)
+		y<-h$counts; y<-y/max(y)
+		rect(breaks[-nB],0,breaks[-1],y,col="orange",...)
+	}
+
+	pairs(datos2_mod[1:4],panel=panel.smooth, diag.panel=panel.hist,
+	cex.labels=1.5, font.labels=2)
+	end.rcode-->
+
+
+	<h3>Par</h3>
+	<p>Entre los argumentos de la función par hay algunos
+	que permiten presentar gráficos múltiples. Así, el argumento <i>mfcol=c(m,n)</i>
+	divide el dispositivo gráfico en mxn partes iguales, que se rellenen por columnas.</p>
+
+	<!--begin.rcode
+	par(mfrow=c(2,3))
+	x<-(1:10)
+	y<-(4:13)^3
+	plot(x)
+	plot(y)
+	plot(x,y)
+	plot(y,y^2)
+	plot(x,y^2)
+	plot(y,x^2)
+	end.rcode-->
+
+
+	<!--begin.rcode
+	par(mfrow=c(1,3))
+	plot(iris$Sepal.Length, ylab="Longitud Sépalo", xlab="Muestra", col="black")
+	plot(iris$Sepal.Width, ylab="Anchura Sépalo", xlab="Muestra", col="black")
+	plot(iris$Species, main="Especies")	
+	par(mfrow=c(1,2))
+	plot(iris$Petal.Length, ylab="Lóngitud Pétalo", xlab="Muestra", col="black")
+	plot(iris$Petal.Width, ylab="Anchura Pétalo", xlab="Muestra", col="black")
+
+end.rcode-->
+
+
+
+
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

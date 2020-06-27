@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li class="selected"><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>23/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Barplot, boxplot, pairs y par</h2>
+
+	<h3>Barplot</h3>
+	<p>Esta función genera gráficos de barras en muy diversas formas.</p>
+	
+	
+	<br>
+	<p>Buscamos información acerca de sus parámetros con la ayuda de <i>help</i>
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(barplot)</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Se puede usar para pequeños representaciones o para problemas más complejos</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">,</span><span class="hl num">8</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">)</span>
+<span class="hl kwd">barplot</span><span class="hl std">(x,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;x&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1ac.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+
+
+	<br>
+	<p>Imaginemos que tenemos guardada la información acerca de
+	las edades de una familia y queremos representarla </p>
+	
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">edad_familiar</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">12</span><span class="hl std">,</span><span class="hl num">15</span><span class="hl std">,</span><span class="hl num">21</span><span class="hl std">,</span><span class="hl num">52</span><span class="hl std">,</span><span class="hl num">50</span><span class="hl std">)</span>
+<span class="hl kwd">barplot</span><span class="hl std">(edad_familiar,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Edades Familia&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Nombre&quot;</span><span class="hl std">,</span>
+                <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Edad&quot;</span><span class="hl std">,</span><span class="hl kwc">names.arg</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Adolfo&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Ana&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Juan&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Agatha&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Antonio&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-1ac.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
+
+	<br>
+	<p><i>Barplot</i> también nos ofrece la posibilidad de poner el gráfico en horizontal: </p>
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">max.temp</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">22</span><span class="hl std">,</span> <span class="hl num">27</span><span class="hl std">,</span> <span class="hl num">26</span><span class="hl std">,</span> <span class="hl num">24</span><span class="hl std">,</span> <span class="hl num">23</span><span class="hl std">,</span> <span class="hl num">26</span><span class="hl std">,</span> <span class="hl num">28</span><span class="hl std">)</span>
+<span class="hl kwd">barplot</span><span class="hl std">(max.temp,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Temperaturas máximas de la semana&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;Grados&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Dia&quot;</span><span class="hl std">,</span>
+<span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Sun&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Mon&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Tue&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Wed&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Thu&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Fri&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Sat&quot;</span><span class="hl std">),</span> <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl str">&quot;darkred&quot;</span><span class="hl std">,</span> <span class="hl kwc">horiz</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1ac.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+
+	<br>
+	<p>Se ha programado una función que simula el lanzamiento de una moneda.
+	Ponemos el código a continuación y representamos el número de tiradas en 
+	un diagrama de barras:</p>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># 1/6000 de prob. de salir canto</span>
+<span class="hl std">canto</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(){</span>
+        <span class="hl std">v</span><span class="hl kwb">&lt;-</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6000</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">)</span>
+        <span class="hl kwa">if</span><span class="hl std">(v</span><span class="hl opt">==</span><span class="hl num">1</span><span class="hl std">)</span>
+                <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+        <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+
+<span class="hl std">Lanz_moneda</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">10</span><span class="hl std">){</span>
+        <span class="hl std">cara</span><span class="hl kwb">=</span><span class="hl num">0</span>
+        <span class="hl std">cruz</span><span class="hl kwb">=</span><span class="hl num">0</span>
+        <span class="hl std">canto</span><span class="hl kwb">=</span><span class="hl num">0</span>
+        <span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n){</span>
+                <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">canto</span><span class="hl std">()</span><span class="hl opt">==</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+                        <span class="hl std">canto</span><span class="hl kwb">=</span><span class="hl std">canto</span><span class="hl opt">+</span><span class="hl num">1</span>
+                <span class="hl kwa">else</span><span class="hl std">{</span>
+                        <span class="hl std">random</span><span class="hl kwb">=</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwc">size</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+                        <span class="hl kwa">if</span><span class="hl std">(random</span><span class="hl opt">==</span><span class="hl num">0</span><span class="hl std">)</span>
+                                <span class="hl std">cara</span><span class="hl kwb">=</span><span class="hl std">cara</span><span class="hl opt">+</span><span class="hl num">1</span>
+                        <span class="hl kwa">else</span>
+                                <span class="hl std">cruz</span><span class="hl kwb">=</span><span class="hl std">cruz</span><span class="hl opt">+</span><span class="hl num">1</span>
+                <span class="hl std">}</span>
+        <span class="hl std">}</span>
+        <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(cara, cruz, canto))</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">5</span><span class="hl std">),</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">,</span><span class="hl str">&quot;canto&quot;</span><span class="hl std">),</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Lanzamiendo de 5 monedas&quot;</span><span class="hl std">,</span>
+                    <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Número de apariciones&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;seagreen&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-6-1ac.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
+
+
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl std">),</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">,</span><span class="hl str">&quot;canto&quot;</span><span class="hl std">),</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Lanzamiendo de 100 monedas&quot;</span><span class="hl std">,</span>
+                    <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Número de apariciones&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;seagreen&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-7-1ac.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+
+
+	<h3>Boxplot</h3>
+	<p>Esta función realiza gráficos de caja con bigotes
+	<i>box-and-whisker</i> </p>
+
+
+	<br>
+	<p>Procedemos a realizar pruebas con esta función y, por ello, introducimos
+	un nuevo dataset llamado <i>airquality</i> 
+	
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(airquality)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-8-1ac.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+	<br>
+	<p>Realizamos un simple boxplot de los datos del viento:
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">boxplot</span><span class="hl std">(airquality</span><span class="hl opt">$</span><span class="hl std">Wind)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-9-1ac.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+
+	<p>Podemos ver la dispersión de los datos y los outliers presentes.
+	Por otro lado, podemos dibujar la gráfica horizontalmente
+
+
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">boxplot</span><span class="hl std">(airquality</span><span class="hl opt">$</span><span class="hl std">Temp,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Temperatura&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl kwc">border</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">horizontal</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-1ac.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl kwd">boxplot</span><span class="hl std">(airquality</span><span class="hl opt">$</span><span class="hl std">Ozone,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Ozono&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Ozono&quot;</span><span class="hl std">,</span>
+        <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl kwc">border</span> <span class="hl std">=</span> <span class="hl str">&quot;brown&quot;</span><span class="hl std">,</span> <span class="hl kwc">horizontal</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">notch</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-2ac.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div></div>
+
+
+	<br>
+	<p>A continuación, mostramos diferentes boxplot, cada uno referente a un mes del dataset con el que estamos trabajando. </p>
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">boxplot</span><span class="hl std">(Temp</span><span class="hl opt">~</span><span class="hl std">Month,</span> <span class="hl kwc">data</span><span class="hl std">=airquality,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Boxplots para cada mes&quot;</span><span class="hl std">,</span>
+        <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Mes&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Grados Fahrenheit&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl kwc">border</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-11-1ac.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+
+
+
+
+	<h3>Pairs</h3>
+	<p>Esta función genérica, crea una figura que contiene todos
+	los diagramas de dispersión de cada variable frente a las restantes.</p>
+
+	<br>
+	<p>Leemos el archivo <i>Datos2.txt</i> proporcionado.</p>
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos2</span><span class="hl kwb">&lt;-</span><span class="hl kwd">read.csv</span><span class="hl std">(</span><span class="hl str">&quot;Datos2.txt&quot;</span><span class="hl std">,</span> <span class="hl kwc">header</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">sep</span><span class="hl std">=</span><span class="hl str">&quot; &quot;</span><span class="hl std">)</span>
+<span class="hl kwd">library</span><span class="hl std">(dplyr)</span>
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning: package 'dplyr' was built under R version 3.6.3
+</pre></div>
+<div class="message"><pre class="knitr r">## 
+## Attaching package: 'dplyr'
+</pre></div>
+<div class="message"><pre class="knitr r">## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+</pre></div>
+<div class="message"><pre class="knitr r">## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">datos2_mod</span><span class="hl kwb">&lt;-</span><span class="hl kwd">select</span><span class="hl std">(datos2, Peso, Altura, Edad, Sexo)</span>
+
+<span class="hl kwd">pairs</span><span class="hl std">(datos2_mod)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-12-1ac.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" class="plot" /></div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">panel.hist</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span><span class="hl kwc">...</span><span class="hl std">){</span>
+        <span class="hl std">usr</span><span class="hl kwb">&lt;-</span><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl str">&quot;usr&quot;</span><span class="hl std">);</span> <span class="hl kwd">on.exit</span><span class="hl std">(</span><span class="hl kwd">par</span><span class="hl std">(usr))</span>
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">usr</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(usr[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">2</span><span class="hl std">],</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1.5</span><span class="hl std">) )</span>
+        <span class="hl std">h</span><span class="hl kwb">&lt;-</span><span class="hl kwd">hist</span><span class="hl std">(x,</span><span class="hl kwc">plot</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+        <span class="hl std">breaks</span><span class="hl kwb">&lt;-</span><span class="hl std">h</span><span class="hl opt">$</span><span class="hl std">breaks; nB</span><span class="hl kwb">&lt;-</span><span class="hl kwd">length</span><span class="hl std">(breaks)</span>
+        <span class="hl std">y</span><span class="hl kwb">&lt;-</span><span class="hl std">h</span><span class="hl opt">$</span><span class="hl std">counts; y</span><span class="hl kwb">&lt;-</span><span class="hl std">y</span><span class="hl opt">/</span><span class="hl kwd">max</span><span class="hl std">(y)</span>
+        <span class="hl kwd">rect</span><span class="hl std">(breaks[</span><span class="hl opt">-</span><span class="hl std">nB],</span><span class="hl num">0</span><span class="hl std">,breaks[</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">],y,</span><span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,...)</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">pairs</span><span class="hl std">(datos2_mod[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">4</span><span class="hl std">],</span><span class="hl kwc">panel</span><span class="hl std">=panel.smooth,</span> <span class="hl kwc">diag.panel</span><span class="hl std">=panel.hist,</span>
+<span class="hl kwc">cex.labels</span><span class="hl std">=</span><span class="hl num">1.5</span><span class="hl std">,</span> <span class="hl kwc">font.labels</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-13-1ac.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" class="plot" /></div></div>
+
+
+	<h3>Par</h3>
+	<p>Entre los argumentos de la función par hay algunos
+	que permiten presentar gráficos múltiples. Así, el argumento <i>mfcol=c(m,n)</i>
+	divide el dispositivo gráfico en mxn partes iguales, que se rellenen por columnas.</p>
+
+<div class="chunk" id="unnamed-chunk-14"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">))</span>
+<span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">10</span><span class="hl std">)</span>
+<span class="hl std">y</span><span class="hl kwb">&lt;-</span><span class="hl std">(</span><span class="hl num">4</span><span class="hl opt">:</span><span class="hl num">13</span><span class="hl std">)</span><span class="hl opt">^</span><span class="hl num">3</span>
+<span class="hl kwd">plot</span><span class="hl std">(x)</span>
+<span class="hl kwd">plot</span><span class="hl std">(y)</span>
+<span class="hl kwd">plot</span><span class="hl std">(x,y)</span>
+<span class="hl kwd">plot</span><span class="hl std">(y,y</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl std">)</span>
+<span class="hl kwd">plot</span><span class="hl std">(x,y</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl std">)</span>
+<span class="hl kwd">plot</span><span class="hl std">(y,x</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-14-1ac.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" class="plot" /></div></div>
+
+
+<div class="chunk" id="unnamed-chunk-15"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">))</span>
+<span class="hl kwd">plot</span><span class="hl std">(iris</span><span class="hl opt">$</span><span class="hl std">Sepal.Length,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Longitud Sépalo&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Muestra&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">plot</span><span class="hl std">(iris</span><span class="hl opt">$</span><span class="hl std">Sepal.Width,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Anchura Sépalo&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Muestra&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">plot</span><span class="hl std">(iris</span><span class="hl opt">$</span><span class="hl std">Species,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Especies&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-15-1ac.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">2</span><span class="hl std">))</span>
+<span class="hl kwd">plot</span><span class="hl std">(iris</span><span class="hl opt">$</span><span class="hl std">Petal.Length,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Lóngitud Pétalo&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Muestra&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">plot</span><span class="hl std">(iris</span><span class="hl opt">$</span><span class="hl std">Petal.Width,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Anchura Pétalo&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Muestra&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-15-2ac.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" class="plot" /></div></div>
+
+
+
+
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

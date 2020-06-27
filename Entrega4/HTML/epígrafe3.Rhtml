@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li class="selected"><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>10/05/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Función T de Student</h2>
+
+	<h3>t.test</h3>
+
+
+
+
+
+	<p><strong>t.test</strong> es una función que nos permite
+	hacer el test t de Student. En sus parámetros, podemos pasar
+	el conjunto de datos sobre el que realiza el test. </p>
+
+	<p>Buscamos información con la ayuda de help</p>
+	<!--begin.rcode
+	help(t.test)
+	end.rcode-->
+
+	<br>
+	<p>Establecemos nuestro nuevo directorio de trabajo y leemos
+	los datos propocionados en la asignatura:</p>
+	<!--begin.rcode
+	setwd("C:/Users/Alberto/Desktop/Computacional/Entrega4/html")
+	datos2<-read.csv("Datos2.txt", header=TRUE, sep=" ")	
+	end.rcode-->
+
+	<!--begin.rcode
+	datos2
+	end.rcode-->
+
+
+	<br>
+	<p>Ahora bien, imaginemos por ejemplo que tenemos unos datos desactualizados
+	que nos dicen que la edad media de la población es de 22 años y que
+	la hipótesis alternativa es que la edad haya aumentado.
+	Hacemos uso de t.test con los siguientes parámetros:
+	</p>
+	<!--begin.rcode
+	edad<-datos2$Edad
+	t.test(edad, alternative = "greater", mu = 22)
+	end.rcode-->
+
+	<p>Si el p-valor es menor que 0.05 entonces estaríamos en la zona de rechazo de la hipótesis nula.
+	Si estamos por encima estamos en la aceptación de la hipótesis. En nuestro caso, el <i>p-valor</i>
+	es menor que 0.05 luego rechazamos la hipótesis nula. </p>
+	
+
+
+	<br>
+	<p>Realizamos un Test para saber si las mujeres siguen una normal de media 65kg de peso:</p>
+	
+	<!--begin.rcode
+	t.test(x=datos2$Peso[datos2$Sexo=="M"],mu=65)
+	end.rcode-->
+	<p>Como sale un p.valor mayor que 0.05 no se rechaza la hipótesis nula</p>
+
+
+
+	<br>
+	<p>
+	Realizamos un estudio con <strong>t.test</strong> usando dos muestras.
+	Tenemos la certeza de que el peso de las mujeres se encuentra 10kg por debajo del de los hombres,
+	o mejor dicho, que sumando la cantidad de 10kg a la media del peso de las mujeres se obtiene la media del peso de los hombres. Sin embargo, 
+	queremos ver si cambia.
+	Sumamos la cantidad de 10kg al peso de las mujeres para igualar la media. Realizamos el t.test:
+
+	</p>
+
+	<!--begin.rcode
+	peso_hombres<-datos2$Peso[datos2$Sexo=="H"]
+	peso_mujeres<-datos2$Peso[datos2$Sexo=="M"]+10
+	t.test(x=peso_hombres,y=peso_mujeres)
+	end.rcode-->
+
+
+	<br>
+	<p> 
+	Obtenemos un p-valor de 0.2876, mayor que 0.05 luego aceptamos la hipótesis nula de que la media del peso
+	de las mujeres + 10 es igual a la media del de los hombres.
+	</p>
+
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

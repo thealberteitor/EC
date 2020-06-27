@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li class="selected"><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>23/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Plot, text y symbols</h2>
+
+	<h3>Plot</h3>
+
+	<p>Es una función genérica que crea un gráfico en el dispositivo gráfico actual. </p>
+	<p>Su forma de uso es <i>plot(x ...)</i>, donde x es uno o varios objetos. Con la ayuda de 
+	la función <i>help</i> podemos consultar información acerca del 
+	resto de parámetros. </p>
+
+	
+
+	<!--begin.rcode
+	help(plot)
+	end.rcode-->
+
+		
+	<!--begin.rcode
+	plot(iris, main="Dataset Iris")
+	end.rcode-->	
+
+	<!--begin.rcode
+	plot(cars, main="Dataset Cars")
+	end.rcode-->
+
+	<br>
+	<p>Lanzamos el mismo gráfico anterior pero uniendo los puntos.</p>
+	<!--begin.rcode
+	plot(cars, type="l", col="orange", main="Dataset Cars")
+	end.rcode-->
+
+
+	<!--begin.rcode
+	plot(sin, -pi, 2*pi, main="La función Seno", ylab="sin(x)", xlab="x")
+	end.rcode-->
+
+
+
+
+	<h3>Text</h3>
+	<p>Esta función añade texto a un gráfico existente. Su sintaxis se puede volver 
+	a consultar con la orden <i>help</i>.</p>
+
+
+	<!--begin.rcode
+	help(text)
+	end.rcode-->
+	
+	<br>
+	<p>Lanzamos la función Seno y añadimos el texto en la imagen.</p>
+	<!--begin.rcode
+	plot(sin, -pi, 2*pi)
+	text(-3,0.5, "sen(x)", col="black", cex=4, adj=0)
+	end.rcode-->
+
+	<h3>Symbols</h3>
+	<p>Esta función permite dibujar círculos cuadrados, rectángulos, estrellas, termómetros 
+	y cajas en una posición determinada de un gráfico, indicando además el tamaño que
+	deben tener.</p>
+
+	<!--begin.rcode
+	n=10
+	x=1:n
+	palette(rainbow(n))
+	z=runif(10)
+	symbols(x,z,circles=z, xlim=c(-1,12), ylim=c(0,1.5), bg=1:n)
+	end.rcode-->
+
+	<br>
+	<p>Dibujamos cuadrados en vez de círculos: </p>
+	<!--begin.rcode
+	symbols(x,z,squares=z, xlim=c(-1,12), ylim=c(0,1.5), bg=1:n)
+	end.rcode-->
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

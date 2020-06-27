@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li class="selected"><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>23/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Plot, text y symbols</h2>
+
+	<h3>Plot</h3>
+
+	<p>Es una función genérica que crea un gráfico en el dispositivo gráfico actual. </p>
+	<p>Su forma de uso es <i>plot(x ...)</i>, donde x es uno o varios objetos. Con la ayuda de 
+	la función <i>help</i> podemos consultar información acerca del 
+	resto de parámetros. </p>
+
+	
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(plot)</span>
+</pre></div>
+</div></div>
+
+		
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(iris,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Dataset Iris&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1a1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(cars,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Dataset Cars&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-1a1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
+
+	<br>
+	<p>Lanzamos el mismo gráfico anterior pero uniendo los puntos.</p>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(cars,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Dataset Cars&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1a1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(sin,</span> <span class="hl opt">-</span><span class="hl std">pi,</span> <span class="hl num">2</span><span class="hl opt">*</span><span class="hl std">pi,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;La función Seno&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;sin(x)&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;x&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1a1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+
+
+
+	<h3>Text</h3>
+	<p>Esta función añade texto a un gráfico existente. Su sintaxis se puede volver 
+	a consultar con la orden <i>help</i>.</p>
+
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(text)</span>
+</pre></div>
+</div></div>
+	
+	<br>
+	<p>Lanzamos la función Seno y añadimos el texto en la imagen.</p>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(sin,</span> <span class="hl opt">-</span><span class="hl std">pi,</span> <span class="hl num">2</span><span class="hl opt">*</span><span class="hl std">pi)</span>
+<span class="hl kwd">text</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">3</span><span class="hl std">,</span><span class="hl num">0.5</span><span class="hl std">,</span> <span class="hl str">&quot;sen(x)&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">,</span> <span class="hl kwc">adj</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-7-1a1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+
+	<h3>Symbols</h3>
+	<p>Esta función permite dibujar círculos cuadrados, rectángulos, estrellas, termómetros 
+	y cajas en una posición determinada de un gráfico, indicando además el tamaño que
+	deben tener.</p>
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">n</span><span class="hl kwb">=</span><span class="hl num">10</span>
+<span class="hl std">x</span><span class="hl kwb">=</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n</span>
+<span class="hl kwd">palette</span><span class="hl std">(</span><span class="hl kwd">rainbow</span><span class="hl std">(n))</span>
+<span class="hl std">z</span><span class="hl kwb">=</span><span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">10</span><span class="hl std">)</span>
+<span class="hl kwd">symbols</span><span class="hl std">(x,z,</span><span class="hl kwc">circles</span><span class="hl std">=z,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">12</span><span class="hl std">),</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1.5</span><span class="hl std">),</span> <span class="hl kwc">bg</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-8-1a1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+	<br>
+	<p>Dibujamos cuadrados en vez de círculos: </p>
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">symbols</span><span class="hl std">(x,z,</span><span class="hl kwc">squares</span><span class="hl std">=z,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">12</span><span class="hl std">),</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1.5</span><span class="hl std">),</span> <span class="hl kwc">bg</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-9-1a1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li><a href="moneda.html">Moneda</a></li>
+          <li class="selected"><a href="dados.html">Dados</a></li>
+          <li><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<h2>Simulación del lanzamiento de dos dados </h2>
+
+	<p>Definimos una sencilla función para simular el lanzamiento de n 
+	dados. Claramente, los dados son independientes, es decir, con
+	reemplazamiento. Invocamos la función <i>help(sample)</i>
+	para conocer un poco más sus parámetros y poder definir el lanzamiento
+	de dados de forma correcta</p>
+
+
+	<!--begin.rcode
+	help(sample)
+	end.rcode-->
+	
+
+	<!--begin.rcode
+lanz_dados=function(n){
+  return(sample(c(1:6), replace=TRUE, size=n))
+}
+	end.rcode-->
+
+
+	<br>
+	<p>Ahora bien, probaremos el gráfico que nos proporciona <i>plot</i>
+	<!--begin.rcode
+	help(plot)
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	plot(lanz_dados(12), ylab="valor", xlab="tiradas", main="Experimento Dados", col="black", type="o")
+	lines(lanz_dados(12), type="o", pch=22, lty=2, col="orange")
+	end.rcode-->
+	
+	<p>Con la ayuda de este gráfico, podemos comparar diferentes distribuciones
+	e incluso estudiar si presentan correlación ya que es muy visual.
+	Mostramos en el gráfico anterior los resultados tras repetir el experimento
+	con 12 dados. En la línea negra continua se representa la primera 
+	tirada mientras que en la discontinua azul, la segunda. </p>
+
+	<br>
+	<p>Añadimos una función que nos muestra el número de experimentos que se 
+	han realizado para obtener el valor <strong>m</strong>
+	tras <strong>n</strong> tiradas. </p>
+
+
+
+	<!--begin.rcode
+exp_lanz=function(n,m){
+  contador=0
+  repeat{
+    contador=contador+1
+    if(sum(lanz_dados(n))==m)
+      break
+  }
+  cat("Se necesitan ",contador," tiradas para obtener",m,"con",n," dados\n")
+  return(contador)
+}
+	end.rcode-->
+	<br>
+	<p>Llamamos a la función anterior un total de 6 veces y calculamos cuántas
+	tiradas se necesitan para obtener la suma máxima, es decir, obtener un 
+	6 en cada dado que se ha lanzado:</p>
+
+	<!--begin.rcode
+	tiradas<-vector(length=6)
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+for(i in 1:6){
+  tiradas[i]<-exp_lanz(i,i*6)
+}
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	n<-c(1:6)
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	m<-n*6
+	end.rcode-->
+
+
+	<br>
+	<!--begin.rcode
+	hoja<-data.frame(tiradas,n,m)
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	hoja
+	end.rcode-->
+
+	<br>
+	<p>Creamos un data.frame con los resultados obtenidos y, a partir
+	de este, llamamos a la función <i>plot</i>. </p>
+
+	<!--begin.rcode
+	plot(hoja, main="Experimento dados", col="red")
+	end.rcode-->
+
+	
+	<p>Los resultados pueden parecer algo liosos, sin embargo,
+	se puede llamar a la función anterior de diferentes formas
+	y así entender mejor la representación.</p>
+	
+	<br>
+	<p>En el eje X se represent el valor n(número de dados) mientras que
+	en el eje Y se representa el número de tiradas necesarias para 
+	obtener el máximo valor en cada uno de esos n dados</p>
+
+	<!--begin.rcode
+	plot(hoja[2:1], main="Tiradas según n", col="red")
+	end.rcode-->
+
+
+        
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li><a href="moneda.html">Moneda</a></li>
+          <li class="selected"><a href="dados.html">Dados</a></li>
+          <li><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<h2>Simulación del lanzamiento de dos dados </h2>
+
+	<p>Definimos una sencilla función para simular el lanzamiento de n 
+	dados. Claramente, los dados son independientes, es decir, con
+	reemplazamiento. Invocamos la función <i>help(sample)</i>
+	para conocer un poco más sus parámetros y poder definir el lanzamiento
+	de dados de forma correcta</p>
+
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(sample)</span>
+</pre></div>
+</div></div>
+	
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">lanz_dados</span><span class="hl kwb">=</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">){</span>
+  <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">),</span> <span class="hl kwc">replace</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">size</span><span class="hl std">=n))</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Ahora bien, probaremos el gráfico que nos proporciona <i>plot</i>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(plot)</span>
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">lanz_dados</span><span class="hl std">(</span><span class="hl num">12</span><span class="hl std">),</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;valor&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;tiradas&quot;</span><span class="hl std">,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Experimento Dados&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;o&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">lines</span><span class="hl std">(</span><span class="hl kwd">lanz_dados</span><span class="hl std">(</span><span class="hl num">12</span><span class="hl std">),</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;o&quot;</span><span class="hl std">,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">22</span><span class="hl std">,</span> <span class="hl kwc">lty</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1a.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+	
+	<p>Con la ayuda de este gráfico, podemos comparar diferentes distribuciones
+	e incluso estudiar si presentan correlación ya que es muy visual.
+	Mostramos en el gráfico anterior los resultados tras repetir el experimento
+	con 12 dados. En la línea negra continua se representa la primera 
+	tirada mientras que en la discontinua azul, la segunda. </p>
+
+	<br>
+	<p>Añadimos una función que nos muestra el número de experimentos que se 
+	han realizado para obtener el valor <strong>m</strong>
+	tras <strong>n</strong> tiradas. </p>
+
+
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">exp_lanz</span><span class="hl kwb">=</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">,</span><span class="hl kwc">m</span><span class="hl std">){</span>
+  <span class="hl std">contador</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl kwa">repeat</span><span class="hl std">{</span>
+    <span class="hl std">contador</span><span class="hl kwb">=</span><span class="hl std">contador</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">sum</span><span class="hl std">(</span><span class="hl kwd">lanz_dados</span><span class="hl std">(n))</span><span class="hl opt">==</span><span class="hl std">m)</span>
+      <span class="hl kwa">break</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">cat</span><span class="hl std">(</span><span class="hl str">&quot;Se necesitan &quot;</span><span class="hl std">,contador,</span><span class="hl str">&quot; tiradas para obtener&quot;</span><span class="hl std">,m,</span><span class="hl str">&quot;con&quot;</span><span class="hl std">,n,</span><span class="hl str">&quot; dados\n&quot;</span><span class="hl std">)</span>
+  <span class="hl kwd">return</span><span class="hl std">(contador)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+	<br>
+	<p>Llamamos a la función anterior un total de 6 veces y calculamos cuántas
+	tiradas se necesitan para obtener la suma máxima, es decir, obtener un 
+	6 en cada dado que se ha lanzado:</p>
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">tiradas</span><span class="hl kwb">&lt;-</span><span class="hl kwd">vector</span><span class="hl std">(</span><span class="hl kwc">length</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">){</span>
+  <span class="hl std">tiradas[i]</span><span class="hl kwb">&lt;-</span><span class="hl kwd">exp_lanz</span><span class="hl std">(i,i</span><span class="hl opt">*</span><span class="hl num">6</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## Se necesitan  4  tiradas para obtener 6 con 1  dados
+## Se necesitan  125  tiradas para obtener 12 con 2  dados
+## Se necesitan  26  tiradas para obtener 18 con 3  dados
+## Se necesitan  773  tiradas para obtener 24 con 4  dados
+## Se necesitan  12237  tiradas para obtener 30 con 5  dados
+## Se necesitan  28590  tiradas para obtener 36 con 6  dados
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">n</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">m</span><span class="hl kwb">&lt;-</span><span class="hl std">n</span><span class="hl opt">*</span><span class="hl num">6</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">hoja</span><span class="hl kwb">&lt;-</span><span class="hl kwd">data.frame</span><span class="hl std">(tiradas,n,m)</span>
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">hoja</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##   tiradas n  m
+## 1       4 1  6
+## 2     125 2 12
+## 3      26 3 18
+## 4     773 4 24
+## 5   12237 5 30
+## 6   28590 6 36
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Creamos un data.frame con los resultados obtenidos y, a partir
+	de este, llamamos a la función <i>plot</i>. </p>
+
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(hoja,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Experimento dados&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-12-1b.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" class="plot" /></div></div>
+
+	
+	<p>Los resultados pueden parecer algo liosos, sin embargo,
+	se puede llamar a la función anterior de diferentes formas
+	y así entender mejor la representación.</p>
+	
+	<br>
+	<p>En el eje X se represent el valor n(número de dados) mientras que
+	en el eje Y se representa el número de tiradas necesarias para 
+	obtener el máximo valor en cada uno de esos n dados</p>
+
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(hoja[</span><span class="hl num">2</span><span class="hl opt">:</span><span class="hl num">1</span><span class="hl std">],</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Tiradas según n&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-13-1c.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" class="plot" /></div></div>
+
+
+        
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

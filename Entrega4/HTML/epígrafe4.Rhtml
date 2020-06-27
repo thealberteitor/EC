@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li class="selected"><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>10/05/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Regresión Lineal</h2>
+
+	<h3>lm</h3>	
+	<p>La función <strong>lm</strong> se usa para ajustar modelos lineales. En nuestro caso,
+	la llevaremos a cabo para regresión. Sin embargo, permite además realizar
+	análisis de varianza o análisis de covarianza</p>
+
+
+
+	<br>
+	<p>Leemos por ejemplo los datos proporcionados en el fichero <i>datos.txt</i>. </p>
+	<!--begin.rcode
+	datos<-read.csv("Datos.txt", header=TRUE, sep=",")
+	end.rcode-->
+
+	<br>
+	<p>Algo </p>
+
+	<!--begin.rcode
+	regresion <- lm(Altura ~ Peso, data=datos)
+	summary(regresion)
+	end.rcode-->
+
+	<br>
+	<p>Ahora bien, podemos obtener los parámetros de la
+	ecuación de la recta de mínimos cuadrados que relaciona la altura con 
+	el peso. Dichos valores vienen datos en la columna 
+	<i>Estimate</i> anterior.
+
+	Luego, en este ejemplo, la ecuación de la recta de mínimos
+	cuadrados es: <strong>y=119.80x+0.75</strong>.
+
+	La representamos a continuación:</p>
+
+	
+	<!--begin.rcode
+	plot(datos$Peso, datos$Altura, xlab="Peso", ylab="Altura", 
+		col="orange", main="Peso-Altura, regresión lineal")
+	abline(regresion)
+	end.rcode-->
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

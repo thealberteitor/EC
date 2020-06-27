@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li class="selected"><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>23/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Pie, stars, persp, image y contour</h2>
+
+	<h3>Pie</h3>	
+	<p>La función <i>pie</i> permite crear un diagrama de sectores
+	de los datos suministrados.</p>
+
+
+
+	<br>
+	<p>Leemos por ejemplo los datos proporcionados en el fichero <i>datos.txt</i>.
+	Lanzamos un diagrama de sectores usando la variable sexo: </p>
+	<!--begin.rcode
+	datos<-read.csv("Datos.txt", header=TRUE, sep=",")
+	pie(table(datos$Sexo), col=c("black","orange"), main="Sexo")
+	end.rcode-->
+
+
+
+
+
+
+
+	<p>Creamos un vector con ciudades de Andalucía donde residen estudiantes
+	que cursan la asignatura. Llamamos a la función <i>pie</i> para
+	mostrar el diagrama de sectores asociado.</p>
+	<!--begin.rcode
+	Provincia<-c("GR","CO","CO","AL","AL","GR","JA","GR","CA","SE","JA","CA","GR","GR", "GR")
+	pie(table(Provincia), col=c("green", "red", "blue", "orange", "black","yellow"))	
+	end.rcode-->
+
+
+
+	<br>
+	<p>Volviendo al dataset de Iris, mostramos un último diagrama de sectores
+	para mostrar la proporción de especies:</p>
+
+	
+	<!--begin.rcode
+	mytable <- table(iris$Species)
+	lbls <- paste(names(mytable), "\n", mytable, sep="")
+	pie(mytable, labels = lbls, main="Especies de Iris")
+	end.rcode-->
+
+
+
+
+
+
+
+
+	<h3>Stars</h3>
+	<p>La función <i>stars</i> realiza un diagrama de estrellas, una por
+	individuo, con información de todas las variables.</p>
+	
+
+	<br>
+	<p>Mostramos diferentes ejemplos que se han realizado usando esta función:</p>
+	<!--begin.rcode
+	datos<-read.csv("Datos.txt", header=TRUE, sep=",")
+	Peso<-datos$Peso
+	Altura<-datos$Altura
+	Edad<-datos$Edad
+	datos2<-matrix(c(Peso,Altura,Edad),ncol=3)
+	end.rcode-->
+
+	<!--begin.rcode
+	stars(matrix(c(Peso,Altura,Edad),ncol=3),main="Diagrama de estrellas")
+	end.rcode-->
+
+
+	<!--begin.rcode
+	stars(matrix(c(Peso,Altura,Edad),ncol=3),main="Diagrama de estrellas", draw.segments=TRUE)
+	end.rcode-->
+
+
+	
+	
+
+	<br>
+	<p>Usamos el dataset mtcars: </p>
+
+	<!--begin.rcode
+	stars(mtcars[, 1:7], key.loc = c(14, 2), main = "Motor Trend Cars", full = FALSE)
+	end.rcode-->
+
+	<!--begin.rcode
+	palette(rainbow(12, s = 0.6, v = 0.75))
+	stars(mtcars[, 1:7], len = 0.8, key.loc = c(12, 1.5), main = "Motor Trend Cars", draw.segments = TRUE)
+	end.rcode-->
+
+
+	<br>
+	<p>Y, por último, el dataset USJudgeRatings: </p>
+
+	<!--begin.rcode
+	data(USJudgeRatings)
+	stars(USJudgeRatings, labels = abbreviate(case.names(USJudgeRatings)),
+      		key.loc = c(13, 1.5), main = "Judge not ...", len = 0.8)
+	end.rcode-->
+
+
+
+
+	<h3>Persp</h3>
+	<p>La función <i>persp</i> crea una gráfico en perspectiva.</p>
+
+	<br>
+	<p>Definimos una función y la llamamos después de realizar el producto exterior (función outer). </p>
+
+	<!--begin.rcode
+	x <- seq(-10, 10, length= 30)
+	y <- x
+	f <- function(x, y) { r <- sqrt(x^2+y^2); 10 * sin(r)/r }
+	z <- outer(x, y, f)
+	z[is.na(z)] <- 1
+	op <- par(bg = "white")
+	persp(x, y, z, theta = 30, phi = 30, expand = 0.5, col = c("black","white"))
+	end.rcode-->
+
+
+	<br>
+	<p>Definimos una nueva función y le aplicamos el producto exterior con x e y.
+	Acto seguido, llamamos a la función <i>persp</i> para mostrar el gráfico en perspectiva.</p>
+
+
+	<!--begin.rcode
+	x <- y <- seq(-10, 10, length = 50);
+
+	z <- outer(x, y, function(x,y) {
+  	       r <- sqrt(x^2 + y^2)+3;
+  	       sin(r)/r});
+
+	persp(x, y, z, theta=15, phi=40, expand=1, border='#333333', col=c("black", "white"), shade=0.2);
+	end.rcode-->
+
+
+	<br>
+	<p>Mostramos otro ejemplo:</p>
+
+
+	<!--begin.rcode
+	x <- seq(-10, 10, length=40)
+	y <- seq(-10, 10, length=40)
+
+	z <- matrix (
+ 		outer(x, y, function(x, y) {
+          	14 - sqrt( (x+cos(y)/10) ^2 + (y - sin(x)/5) ^2) +
+		cos((x-2)/3)*sin(x) + cos((y-2)/4)*cos(y) + sqrt( (x+3) ^ 2 + (y/2-2) ^2)
+        	}),
+  		nrow=length(x)
+	)
+
+	persp(x, y, z, col=c("black","white"))
+	end.rcode-->
+
+
+
+	<h3>Contour</h3>
+	<p>La función <i>contour</i> realiza un mapa de nivel.</p>
+
+
+
+	<br>
+	<p>Mostramos diferentes ejemplos y funcionalidades de esta función:</p>
+
+
+	<!--begin.rcode
+	x <- y <- seq(-4*pi, 4*pi, len = 27)
+	r <- sqrt(outer(x^2, y^2, "+"))
+	opar <- par(mfrow = c(2, 2), mar = rep(0, 4))
+	for(f in pi^(0:3))
+		contour(cos(r^2)*exp(-r/f), drawlabels = FALSE, axes = FALSE, frame = TRUE)
+	end.rcode-->
+
+	
+		
+	<p>Destacamos su uso combinado con <i>image</i> que explicaremos a continuación.</p>
+
+
+
+	<h3>Image</h3>
+	<p>La función <i>image</i> dibuja una representación
+	utilizando un código de color o una escala de grises.</p>
+
+
+	
+
+
+	<!--begin.rcode
+	x <- y <- seq(-4*pi, 4*pi, length.out = 27)
+	r <- sqrt(outer(x^2, y^2, "+"))
+	image(z = z <- cos(r^2)*exp(-r/6), col = gray.colors(33))
+	image(z, axes = FALSE, main = "Math can be beautiful ...", xlab = expression(cos(r^2) * e^{-r/6}))
+	contour(z, add = TRUE, drawlabels = FALSE)
+	end.rcode-->
+
+
+	<br>
+	<p>Mostramos en un mapa de calor la representación de un volcán, del dataset volcano.</p>
+
+
+	<!--begin.rcode
+	image(t(volcano)[ncol(volcano):1,])
+	end.rcode-->
+
+
+	<!--begin.rcode
+	x <- 10*(1:nrow(volcano))
+	y <- 10*(1:ncol(volcano))
+	image(x, y, volcano, col = hcl.colors(100, "terrain"), axes = FALSE)
+	contour(x, y, volcano, levels = seq(90, 200, by = 5), add = TRUE, col = "brown")
+	axis(1, at = seq(100, 800, by = 100))
+	axis(2, at = seq(100, 600, by = 100))
+	box()
+	title(main = "Maunga Whau Volcano", font.main = 4)
+	end.rcode-->
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

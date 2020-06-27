@@ -1,0 +1,464 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li class="selected"><a href="baraja.html">Baraja de Cartas</a></li>
+          <li><a href="moneda.html">Moneda</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>5/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Con reemplazamiento</h2>
+
+
+
+
+
+	<p>Escribimos en nuestro programa la función que simula la extracción
+	con reemplazamiento de nuestra baraja.</p>
+
+
+
+	<!--begin.rcode
+CuatroAses<-function(Mostrar=F, Maximo=1000){
+  Extracciones=0
+  Resultado=1:Maximo
+  Ases=c(0,0,0,0)
+  
+  repeat{
+    if(Maximo<=Extracciones){
+      if(Mostrar)
+        cat("No he podido obtener 4 ases en ", Extracciones, "extracciones. \n")
+      
+      return(list(E=NA, R=Resultado, Conseguido=F))
+    }
+    Extracciones = Extracciones+1
+    SacoUna = sample(52,1)
+    Resultado[Extracciones]=SacoUna
+    
+    if(SacoUna%%13!=1)
+      next #módulo
+    
+    Ases[(SacoUna-1)%/%13+1]=1 #div. entera
+    if(sum(Ases)==4)
+      break
+  }
+  length(Resultado)=Extracciones
+  if(Mostrar)
+    cat("He necesitado ", Extracciones, " extracciones para obtener cuatro ases.\n")
+  
+  return(list(E = Extracciones , R=Resultado, Conseguido=T))
+}
+	end.rcode-->
+
+
+
+	<br>
+	<p>Sin embargo, la función anterior está determinada por el azar ya que si la ejecutamos
+	con los mismo parámetros se obtienen diferentes resultados.
+	Por ello, para estudiar su distribución hacemos uso de la siguiente función:</p>
+
+	<!--begin.rcode
+DistriAses = function(n=5, Maximo=1000){
+   Saco = vector(length=n)
+   for(i in 1:n)
+      Saco[i] = CuatroAses(F,Maximo)$E
+   return(Saco)
+}         
+	end.rcode-->
+
+	<br>
+	<p>Ahora bien, llamaremos a la función anterior y estudiaremos la
+	frecuencia con la que no se pueden conseguir los 4 ases con 200
+	extracciones, es decir,  el número de NA obtenidos en la llamada
+	a la función <i>summary</i>.</p>
+
+
+
+
+	<!--begin.rcode
+	Distribucion<-DistriAses(10 ,200)
+	end.rcode-->
+
+
+
+
+
+	<!--begin.rcode
+	Distribucion<-DistriAses(25 ,200)
+	end.rcode-->
+
+	<br>
+	<p>Como vemos en el ejemplo anterior, se puede ver el número de 
+	NA obtenido. Además, a mayor  número de llamadas a la función, 
+	se obtendrán mayor número de NA</p>
+
+
+	
+	<br>
+	<p>Vemos la proporción obtenida de NA respecto al valor inicial
+	<strong>n</strong>. Realizamos un bucle <strong>for</strong> 
+	donde llamaremos a la funció nanterior con diferentes valores del 
+	parámetro <strong>n</strong>, desde 10 hasta un millón.</p>
+	
+
+
+	<!--begin.rcode
+	n<-10
+	end.rcode-->
+
+
+
+
+	<!--begin.rcode
+estudio<-vector(length=6)
+for(i in 1:6){
+  estudio[i]<-summary(DistriAses(n,200))[7]/n
+  n<-n*10
+}
+	end.rcode-->
+
+
+	<br>
+	<p>Una vez ejecutado, mostramos los resultados obtenidos. 
+	Observamos que cuando llega al millón la proporción
+	queda estabilizada.</p>
+
+
+
+
+
+
+	<br>
+	<h2>Sin reemplazamiento</h2>
+
+	
+	<p>Ahora bien, veremos la siguiente funcion. Es parecida a la
+	anterior pero con la diferencia de que las cartas se extraen
+	sin reemplazamiento.</p>
+
+	<!--begin.rcode
+CuatroAses_sin = function(Mostrar=F){
+  Ases=0
+  Resultado=sample(52)
+  for(i in 1:52){
+    if(Resultado[i]%%13!=1)
+      next
+    Ases=Ases+1
+    if(Ases==4)
+      break
+    if(Mostrar)
+      cat("He necesitado", i, " extracciones para obtener cuatro ases\n")
+    
+    return(list(E=i, R=Resultado[1:i]))
+  }
+}
+	end.rcode-->
+
+
+
+
+
+	<br>
+	<p>Al igual que pasaba con la función con reemplazamiento, si 
+	llamamos la función con diferentes valores de <strong>n</strong>,
+	obtenemos diferentes resultados. Por ello, definimos la siguiente 
+	función para estudiar su distribución.</p>
+
+
+
+
+	<!--begin.rcode
+DistriAses_sin = function(n=5){
+  Saco=vector(length=n)
+  for(i in 1:n)
+    Saco[i]=CuatroAses_sin()$E
+  return (Saco)
+}
+	end.rcode-->
+
+
+
+	<br>
+	<p>Estudiaremos ahora los diferentes parámetros de carácter estadístico:
+	Llamamos a la función y guardamos el resultado en la variable exp.
+	Hacemos llamadas de funciones como <i>summary o fivenum</i>, recordando
+	que podemos usar el comando <i>help</i> para informarnos y saber qué hacen</p>
+
+	<ul>
+          <li><strong>Summary:</strong> Es una función genérica que devuelve un resumen de los resultados.</li>
+          <li><strong>Fivenum:</strong> Devuelve los 5 valores resultantes del test de Tukey (minimum, lower-hinge, median, upper-hinge, maximum</li>
+        </ul>
+
+	<!--begin.rcode
+	exp<-DistriAses_sin(30)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	exp
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	summary(exp)
+	end.rcode-->
+
+
+
+	
+
+
+	<!--begin.rcode
+	summary(exp)[5]
+	end.rcode-->
+
+
+
+
+	<br>
+
+	<!--begin.rcode
+	help(fivenum)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	fivenum(exp)
+	end.rcode-->
+
+
+
+
+	<br>
+	<p>Por otro lado, podemos añadir el libro <strong>Hmisc</strong> 
+	(instalarlo previamente) y usar su función <strong>describe</strong>
+	que mostramos a continuación: </p>
+
+
+
+
+	<!--begin.rcode
+	library(Hmisc)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	help(describe)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	describe(exp)
+	end.rcode-->
+
+
+	<br>
+	<p>Ahora bien, volvemos a sobreescribir la instancia exp, pero 
+	esta vez con <strong>n=10</strong>.	Además, existen funciones útiles
+	como <strong>range, median, mean</strong> o algunos
+	más sofisticados como <strong>sapply</strong></p>
+
+
+
+	<!--begin.rcode
+	exp<-DistriAses_sin(10)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	exp
+	end.rcode-->
+
+
+	<br>
+
+
+
+	<!--begin.rcode
+	range(exp)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	median(exp)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	mean(exp)
+	end.rcode-->
+
+
+
+	<br>	
+
+
+	<!--begin.rcode
+	help(sapply)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	sapply(exp, quantile)
+	end.rcode-->
+
+
+
+	<br>
+	<p>Para probar una última función, añadimos el libro
+	<strong>pastecs</strong> e invocamos su función
+	<strong>stat.desc</strong>, que nos muestra un resumen de los resultados:</p>
+
+
+	<!--begin.rcode
+	install.packages("pastecs")
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	library(pastecs)
+	end.rcode-->
+
+
+
+
+
+
+	<!--begin.rcode
+	help(stat.desc)
+	end.rcode-->
+
+
+
+
+
+	
+	<!--begin.rcode
+	stat.desc(exp)
+	end.rcode-->
+
+
+
+        
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

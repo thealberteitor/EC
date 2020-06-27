@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li class="selected"><a href="moneda.html">Moneda</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+       
+	<h2>Simulación del lanzamiento de una moneda</h2>
+
+	<p>Programamos la Simulación del lanzamiento de una moneda.
+	Como norma general, se suele pensar que la probabilidad de salir
+	cara o cruz en una moneda es del 50%. Sin embargo, para jugar un 
+	poco más con las variables, introducimos otra nueva opción, que la moneda
+	caiga de canto. Según estudios del matemático <strong>Perdi Diaconis </strong>
+	establecen que en torno a 1 de cada 6000 veces (en tiradas perfectas,
+	sin vibraciones ni viento) saldrá de canto. Bien es cierto que existen
+	otros factores que pueden influir, como que la moneda está en el
+	momento inicial con la cara hacia arriba o no, pero esos factores
+	no se incluirán en nuestro experimento.  </p>
+
+	<br>
+	<p>Creamos una pequeña función que calcula la probabilidad de 1/6000</p>
+	<p>Generamos un número aleatorio. Si ese número es el 1 devolvemos TRUE,
+	realmente el valor 1 es indiferente, funcionaría igual sustituyendo el 
+	1 por cualquier valor entre el 1 y el 6000.</p>
+
+        <!--begin.rcode
+# 1/6000 de prob. de salir canto
+canto<-function(){
+  v<-sample(6000,1)
+  if(v==1)
+    return(TRUE)
+  return(FALSE)
+}
+	end.rcode-->
+
+
+
+	<br>
+	<p>Añadimos el código del lanzamiento de moneda. En él,
+	primero se comprobará si la moneda ha salido de canto y, en 
+	caso contrario, asignará la misma probabilidad a salir cara o cruz,
+	llamando a la función <i>sample</i>.</p>
+
+
+	<br>
+	<p>Ahora, llamamos a la función anterior con diferentes valores
+	de <strong>n</strong>. Con los resultados podemos realizar infinidad
+	de experimentos. Creamos, por ejemplo, un data.frame que mostramos
+	a continuación: </p>
+
+        <!--begin.rcode
+Lanz_moneda<-function(n=10){
+  cara=0
+  cruz=0
+  canto=0
+  for(i in 1:n){
+    if(canto()==TRUE)
+      canto=canto+1
+    else{
+      random=sample(c(0,1), size=1)
+      if(random==0)
+	cara=cara+1
+      else
+	cruz=cruz+1
+    }
+  }
+  return(c(cara, cruz, canto))
+}
+	end.rcode-->
+
+
+	<br>
+
+
+
+
+
+
+        <!--begin.rcode
+help(data.frame)
+	end.rcode-->
+
+
+
+
+
+        <!--begin.rcode
+nombres<-c("Cruz", "Cara", "Canto")
+	end.rcode-->
+
+
+
+
+
+        <!--begin.rcode
+hoja_experimentos<-data.frame(row_names=nombres, n_50=Lanz_moneda(50),
+	n_500=Lanz_moneda(500),n_5000=Lanz_moneda(5000))
+	end.rcode-->
+
+
+
+
+
+        <!--begin.rcode
+hoja_experimento
+	end.rcode-->
+
+
+	<br>
+	<p>Hemos asignado los nombres de las filas en la llamada a la
+	función y, en el resto de parámetros, llamamos a la función
+	<i>Lanz_moneda</i> para así crear una columna con los resultados
+	de cada llamada. Veamos que para <strong>n=50</strong> la moneda
+	no ha caido prácticamente de canto ninguna vez, mientras que para
+	<strong>n=15000</strong> sí. Juguemos un poco más con este experimento:</p>
+	
+
+	<br>
+	<p>Probemos ahora el gráfico <i>barplot</i>.</p>
+
+
+	<p>Realizaremos 4 llamadas a la función anterior, aumentando el valor
+	de las tiradas y comprobando que a mayor valor de <strong>n</strong>,
+	las proporciones cara y cruz se igualarán.</p>
+	
+
+
+
+        <!--begin.rcode
+barplot(Lanz_moneda(5), names.arg = c("cara","cruz","canto"), 
+        			main="Lanzamiendo de 5 monedas",
+        			ylab = "Número de apariciones",
+        			col = c("orange", "black","seagreen"))
+	end.rcode-->
+
+
+        <!--begin.rcode
+barplot(Lanz_moneda(50), names.arg = c("cara","cruz","canto"), 
+        			 main="Lanzamiendo de 50 monedas",
+        			 ylab = "Número de apariciones",
+        			 col = c("orange", "black","seagreen"))
+	end.rcode-->
+
+
+
+
+        <!--begin.rcode
+barplot(Lanz_moneda(5000), names.arg = c("cara","cruz","canto"), 
+        			   main="Lanzamiendo de 5000 monedas",
+        			   ylab = "Número de apariciones",
+        			   col = c("orange", "black","seagreen"))
+	end.rcode-->
+
+
+
+        <!--begin.rcode
+barplot(Lanz_moneda(100000), names.arg = c("cara","cruz","canto"), 
+        			     main="Lanzamiendo de 100000 monedas",
+        			     ylab = "Número de apariciones",
+        			     col = c("orange", "black","seagreen"))
+	end.rcode-->
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

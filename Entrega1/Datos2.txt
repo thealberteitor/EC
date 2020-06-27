@@ -1,0 +1,15 @@
+Nombre Peso Altura Edad Sexo
+"Juana Garcia" 77 1.63 23 M
+"Silvia Lopez" 58 1.63 23 M
+"Andres Garces" 89 1.85 26 H
+"Laura Perez" 55 1.62 23 M
+"Adela" 47 1.60 26 M
+"Yolanda Lopez" 60 1.63 26 M
+"Lola Martinez" 54 1.70 22 M
+"Alberto Garcia" 58 1.65 23 H
+"Pedro Vera" 75 1.78 26 H
+"Diego Moreno" 65 1.70 24 H
+"Julio Angulo" 82 1.77 28 H
+"Juan Trucha" 85 1.83 42 H
+"Rafael Perez" 75 1.74 25 H
+"Monica Sanchez" 65 1.65 26 M

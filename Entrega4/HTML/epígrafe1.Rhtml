@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li class="selected"><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>10/05/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Función de densidad y distribución</h2>
+
+	
+	<h1>Distribución Normal</h1>
+	<h3>dnorm, pnorm</h3>
+
+	<p>Las funciones <strong>dnorm</strong> y <strong>pnorm</strong>
+	sirven para representar la función de densidad y de distribución de una
+	distribución Normal</p>
+	<p>Hacemos uso de la función <i>Dibuja</i> del guión de prácticas.</p>
+
+	<!--begin.rcode
+	Dibuja_normal<-function(n=30,alfa=.001,fil=1,col=1){
+		#Dibuja la funcion de densidad
+		#y la de distribucion de la normal
+		n<-as.integer(n)
+		if (n<10) stop("Hacen falta mas numeros")
+		a<-qnorm(alfa)
+		b<-qnorm(1-alfa)
+
+		par(mfrow=c(fil,col))
+		for (i in 1:(fil*col)){
+			x<-seq(a,b,,i*n)
+			plot(x,dnorm(x), col="red")
+			title(main="Función de densidad", ylab="y", col="black")
+		}
+
+		
+		par(mfrow=c(fil,col))
+		for (i in 1:(fil*col)){
+			x<-seq(a,b,,i*n)
+			plot(x,pnorm(x), col="blue")
+			title(main="Función de distribución", ylab="y", col="black")
+		}
+		
+	}
+	end.rcode-->
+
+	<br>
+	<p>Llamamos a la función anterior: </p>
+
+
+	<!--begin.rcode
+	Dibuja_normal(n=50, alfa=.001, fil=2, col=1) 
+	end.rcode-->
+
+	<h1>Distribución Uniforme</h1>
+	<h3>dunif, punif</h3>
+
+	<br>
+	<p>Modificamos la función anterior <strong>Dibuja</strong> para
+	representar la distribución uniforme entre 0 y 1. Para ello 
+	añadimos dos nuevos parámetros que se le pasarán a <strong>dunif</strong> y 
+	a <strong>punif</strong> cuando se vayan a lanzar con plot</p>
+	<!--begin.rcode
+	Dibuja_uniforme<-function(n=30,alfa=.001,fil=1,col=1, min1=0, max1=1){
+		#Dibuja la funcion de densidad
+		#y la de distribucion de la uniforme
+		n<-as.integer(n)
+		if (n<10) stop("Hacen falta mas numeros")
+		a<-qnorm(alfa)
+		b<-qnorm(1-alfa)
+
+		par(mfrow=c(fil,col))
+		for (i in 1:(fil*col)){
+			x<-seq(a,b,,i*n)
+			plot(x,dunif(x, min=min1, max=max1), ylab="y", col="red")
+			title(main="Función de densidad", col="black")
+		
+		}
+		par(mfrow=c(fil,col))
+		for (i in 1:(fil*col)){
+			x<-seq(a,b,,i*n)
+			plot(x,punif(x, min=min1, max=max1), ylab="y", col="blue")
+			title(main="Función de distribución", col="black")
+		}
+		
+	}
+	end.rcode-->
+
+
+	<br>
+	<p>Llamamos a la función anterior para representar las funciones de densidad
+	y uniforme de la distribución uniforme: </p>
+
+	<!--begin.rcode
+	Dibuja_uniforme(n=50, alfa=.001, fil=1, col=1, min1=0, max1=1) 
+	end.rcode-->
+
+
+
+	
+	<h3>?Distributions</h3>
+	<p>Con este comando, podemos ver información sobre todas las distribuciones 
+	que existen en R </p>
+
+	<!--begin.rcode
+	?Distributions
+	end.rcode-->
+	
+	<h1>Distribución de Poisson</h1>
+	<p>Escogemos la distribución de Poisson, por ejemplo, para mostrar sus gráficas
+	con la ayuda de dos funciones:</p>
+
+	<h3>dpois, ppois</h3>
+	<p> Modificamos la función para representar la función de densidad y
+	distribución de la Poisson.</p>
+	<p>Le pasamos el valor <i>lambda</i> por parámetros</p> 
+
+
+	<!--begin.rcode
+	Dibuja_poisson<-function(n=30,alfa=.001, fil=1, col=1, l=2){
+		#Dibuja la funcion de densidad
+		#y la de distribucion de Poisson
+		n<-as.integer(n)
+		if (n<10) stop("Hacen falta mas numeros")
+		a<-qnorm(alfa)
+		b<-qnorm(1-alfa)
+
+		par(mfrow=c(fil,col))
+		for (i in 1:(fil*col)){
+			x<-seq(0,n)
+			plot(x,dpois(x, lambda=l), ylab="y", col="red")
+			title(main="Función de densidad", col="black")
+		
+		}
+		par(mfrow=c(fil,col))
+		for (i in 1:(fil*col)){
+			x<-seq(0,n)
+			plot(x,ppois(x, lambda=l), ylab="y", col="blue")
+			title(main="Función de distribución", col="black")
+		}
+		
+	}
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	Dibuja_poisson(n=60, l=2)
+	end.rcode-->
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

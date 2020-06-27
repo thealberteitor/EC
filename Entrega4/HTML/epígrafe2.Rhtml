@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li class="selected"><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>10/05/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Estadística descriptiva de <strong>Datos2.txt</strong></h2>
+
+
+	<p>Primero de todo, establecemos nuestro directorio de trabajo 
+	con <strong>setwd()</strong> para así ubicarnos en la carpera
+	que contiene los archivos a describir</p>
+
+	<!--begin.rcode
+	setwd("C:/Users/Alberto/Desktop/Computacional/Entrega4/html")
+	end.rcode-->
+
+	<!--begin.rcode
+	datos2<-read.csv("Datos2.txt", header=TRUE, sep=" ")	
+	end.rcode-->
+
+	<br>	
+	<p>Una vez leídos el fichero, usamos la orden <strong>help</strong> sobre
+	la función <strong>summary</strong> y, acto seguido, la invocamos
+	para realizar un resumen de los resultados.  </p>
+
+	<!--begin.rcode
+	help(summary)
+	summary(datos2)
+	end.rcode-->
+	
+	<p>Como vemos, se muestran en columnas las diferentes variables
+	de nuestro dataset, indicando los distintos valores del mínimo, 
+	primer cuartil, mediana, media, 3er cuartil y el máximo de cada
+	una de ellas. </p>
+	<br>
+	<p>Por ejemplo, el peso oscila entre [47kg, 89kg], la altura entre 
+	[1.60m, 1.85m] y la edad entre [22años, 42años]. El resto de valores
+	se pueden observar en la resumen anterior.
+
+	<br>
+	<p>Guardamos en las variables <i>peso, altura y edad</i> los 
+	valores de las respectivas columnas:</p>
+
+
+	<!--begin.rcode
+	peso<-datos2$Peso
+	altura<-datos2$Altura
+	edad<-datos2$Edad
+	end.rcode-->
+
+
+	<br>	
+	<p>Ahora, bien, llamamos a la función <strong>fivenum</strong> previamente
+	consultada con  <strong>help</strong>. Esta función nos devuelve
+	el resumen en forma de 5 números (minimo, extremo inferior, mediana, 
+	extremo superior y el máximo) del Test de Tukey. </p>
+	<!--begin.rcode
+	help(fivenum)
+	fivenum(peso)
+	end.rcode-->
+
+
+	<br>	
+	<p>Por otro lado, podemos hacer uso de funciones como
+	<strong>range, median y mean</strong>, que nos devuelven 
+	el rango, mediana y media, respectivamente. Las aplicamos sobre la edad de nuestros datos.</p>
+
+	<!--begin.rcode
+	range(edad)
+	median(edad)
+	mean(edad)
+	end.rcode-->
+
+
+	<br>
+	<h3>stat.desc</h3> 
+
+	<p>Hacemos uso de la función <strong>stat.desc</strong>,
+	pero para ello debemos instalarla primero </p>
+	<p>Esta función nos muestra una tabla con estadística descriptiva
+	sobre los datos que se le han pasado como parámetro.</p>
+
+
+
+	<!--begin.rcode 
+	library(pastecs)
+	help(stat.desc)
+	end.rcode-->
+	
+	<br>	
+	<p>Nos quedamos con un subconjunto de los datos de entrada</p>
+	<!--begin.rcode
+	datos2_mod<-subset(datos2, select=c(Peso,Altura, Edad))
+	stat.desc(datos2_mod)
+	end.rcode-->
+	
+	<p>Como vemos en la tabla anterior, se muestran los resultados del 
+	mínimo, máximo, rango, suma, mediana y media, entre otros. También
+	se muestra la varianza, que era otra de las medidas que se habían 
+	pedido. Observando por ejemplo la media, podemos decir que el peso
+	ronda los 67 kg, la altura 1,69 y la edad 26 años.</p>
+
+
+	<br>
+	<h3>Stem</h3>
+	<p>Esta función nos permite dibujar los datos dividiendolos
+	en <i>stems</i> (los dígitos más grandes) y <i>hojas</i> (los
+	dígitos más pequeños. Normalmente, se usa como un histograma para
+	comparar los datos que se le pasan como entrada.</p>
+	
+	<!--begin.rcode
+	stem(peso)
+	stem(edad)
+	end.rcode-->
+
+	<br>
+	<h3>Hist</h3>
+	<p>Esta función genera y devuelve un histograma de los datos suministrados</p>
+	
+	<p>Buscamos información acerca de su uso y sus parámetros: </p>
+	<!--begin.rcode
+	help(hist)
+	end.rcode-->
+
+
+	<!--begin.rcode
+	hist(altura, main="Altura", col=c("black","orange"), xlab="metros", ylab="Frecuencia")
+	end.rcode-->
+
+	
+	<br>
+	<h3>Boxplot</h3>
+	<p>Con esta función, realizamos un gráfico box-plot con los datos dados.</p>
+	<!--begin.rcode
+	help(boxplot)
+	boxplot(peso, main="Peso", col="orange", border="black")
+	boxplot(altura, main = "Altura", xlab = "m", col = "orange", 
+		border = "brown", horizontal = TRUE, notch = FALSE)
+	end.rcode-->
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

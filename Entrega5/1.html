@@ -1,0 +1,851 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Trabajo final. Knitr en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li class="selected"><a href="1.html">Ejercicios</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>10/06/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interés</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+	<H3>Índice</H3>
+	<hr>
+		<ul>
+			<li><a href="#E1">Ejercicio 1</a></li>
+			<li><a href="#E2">Ejercicio 2</a></li>
+			<li><a href="#E3">Ejercicio 3</a></li>
+			<li><a href="#E4">Ejercicio 4</a></li>
+			<li><a href="#E5">Ejercicio 5</a></li>
+			<li><a href="#E6">Ejercicio 6</a></li>
+			<li><a href="#E7">Ejercicio 7</a></li>
+			<li><a href="#E8">Ejercicio 8</a></li>
+			<li><a href="#E9">Ejercicio 9</a></li>
+			<li><a href="#CC">Conclusiones</a></li>
+		</ul>
+	
+	<hr>
+
+	
+	<h2>
+		<a name="E1">Ejercicio 1</a>
+	</h2>
+
+	<p><FONT SIZE=3> Considera en el plano el recinto cerrado finito definido por las funciones \(y=x^2\) y \(100 x=y^2\) al cual pertenece el punto de coordenadas 
+	\((2,12)\). Realiza un gráfico del mismo. </font></p>
+
+
+	<p>Comenzamos creando una función que llamaremos <b>dibuja_recinto</b> y recibirá 4 parámetros que se usarán
+	para establecer los límites de \(x\) e \(y\). En ella, definimos las funciones que delimitarán nuestro recinto, separando 
+	\(100 x=y^2\) en sus dos ramas parabólicas en la dirección del eje \(OX\): \(y= \pm \sqrt{100x} \) </p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dibuja_recinto</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x0</span><span class="hl std">,</span><span class="hl kwc">xf</span><span class="hl std">,</span> <span class="hl kwc">y0</span><span class="hl std">,</span><span class="hl kwc">yf</span><span class="hl std">){</span>
+        <span class="hl std">first</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){x</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl std">}</span>
+        <span class="hl std">second</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){</span><span class="hl kwd">sqrt</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">x)}</span>
+        <span class="hl std">third</span><span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){</span><span class="hl opt">-</span><span class="hl kwd">sqrt</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">x)}</span>
+        <span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;x&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(x0,xf),</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(y0,yf))</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">first</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;goldenrod1&quot;</span><span class="hl std">,</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">second</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,xf),</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">third</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,xf),</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">legend</span><span class="hl std">(</span><span class="hl str">&quot;topleft&quot;</span><span class="hl std">,</span> <span class="hl kwc">inset</span><span class="hl std">=</span><span class="hl num">.02</span><span class="hl std">,</span> <span class="hl kwc">legend</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;y=x^2&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;y^2=100*x&quot;</span><span class="hl std">),</span>
+                <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;goldenrod1&quot;</span><span class="hl std">,</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;indianred4&quot;</span><span class="hl std">),</span> <span class="hl kwc">lty</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">box.lty</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">0.8</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Por otro lado, haciendo uso de <b>points</b>, añadimos una función que recibe un punto y lo representa gráficamente:</p>
+	
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dibuja_punto</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">,</span> <span class="hl kwc">text</span><span class="hl std">){</span>
+        <span class="hl kwd">points</span><span class="hl std">(x, y,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">20</span><span class="hl std">)</span>
+        <span class="hl kwa">if</span><span class="hl std">(text</span> <span class="hl opt">==</span> <span class="hl num">TRUE</span><span class="hl std">)</span>
+                <span class="hl kwd">text</span><span class="hl std">(x</span><span class="hl opt">+</span><span class="hl num">0.1</span><span class="hl std">, y,</span> <span class="hl kwd">toString</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(x,y)),</span><span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">0.8</span><span class="hl std">,</span><span class="hl kwc">adj</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Realizamos una primera llamada a <b>dibuja_recinto</b>, comprobando que el punto \((2,12)\) se encuentra
+	en el recinto delimitado por las funciones \(y=x^2\) y la rama parabólica positiva de \(y^2 = 100x\)</p>
+	<br>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span> <span class="hl opt">-</span><span class="hl num">25</span><span class="hl std">,</span><span class="hl num">25</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">12</span><span class="hl std">,</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
+
+	<p>Por ello, nuestra función original admite una simplificación y quedará de la siguiente forma: </p>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dibuja_recinto</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x0</span><span class="hl std">,</span><span class="hl kwc">xf</span><span class="hl std">,</span> <span class="hl kwc">y0</span><span class="hl std">,</span><span class="hl kwc">yf</span><span class="hl std">){</span>
+        <span class="hl std">first</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){x</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl std">}</span>
+        <span class="hl std">second</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){</span><span class="hl kwd">sqrt</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">x)}</span>
+        <span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;x&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(x0,xf),</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(y0,yf))</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">first</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;goldenrod1&quot;</span><span class="hl std">,</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">second</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,xf),</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">legend</span><span class="hl std">(</span><span class="hl str">&quot;topleft&quot;</span><span class="hl std">,</span> <span class="hl kwc">inset</span><span class="hl std">=</span><span class="hl num">.02</span><span class="hl std">,</span> <span class="hl kwc">legend</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;y=x^2&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;sqrt(100*x)&quot;</span><span class="hl std">),</span>
+                <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;goldenrod1&quot;</span><span class="hl std">,</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">),</span> <span class="hl kwc">lty</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">box.lty</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">0.8</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">,</span><span class="hl num">25</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">12</span><span class="hl std">,</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+	<h2>
+		<a name="E2">Ejercicio 2</a>
+	</h2>
+	<p><FONT SIZE=3>Construye una función que indique si un punto cualquiera del plano pertenece al interior de ese recinto, al borde o al exterior. 
+	Comprueba que \((2,12)\) es interior. Aplícala a los puntos \((0,0)\), \((-1,-1)\) y \((30,30)\) y comenta los resultados.
+	</font></p>
+
+	<p>Definimos una función denominada <b>posicion</b>, que recibirá ambas coordenadas del punto que queramos comprobar y devolverá su posición
+	respecto a nuestro recinto definido.
+	El funcionamiento es muy sencillo: 
+	<ol>
+		<li> Si el punto se encuentra por debajo de la gráfica de \(y=x^2\) o por encima de \(y=\sqrt{100}\), será exterior.
+		<li> Si el punto se encuentra entre las dos gráficas, será interior.
+		<li> En caso contrario, si el punto se encuentra sobre cualquiera de las gráficas, en el primer cuadrante, será frontera.
+	</ol>	
+	</p>
+	
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">posicion</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">){</span>
+        <span class="hl kwa">if</span> <span class="hl std">(y</span><span class="hl opt">&gt;</span><span class="hl std">x</span><span class="hl opt">^</span><span class="hl num">2</span> <span class="hl opt">&amp;</span> <span class="hl std">y</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl opt">&lt;</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">x)</span>
+                <span class="hl std">es</span> <span class="hl kwb">=</span> <span class="hl str">&quot;interior&quot;</span>
+        <span class="hl kwa">else if</span> <span class="hl std">(y</span><span class="hl opt">&lt;</span><span class="hl std">x</span><span class="hl opt">^</span><span class="hl num">2</span> <span class="hl opt">|</span> <span class="hl std">y</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl opt">&gt;</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">x</span> <span class="hl opt">|</span> <span class="hl std">x</span><span class="hl opt">&lt;</span><span class="hl num">0</span> <span class="hl opt">|</span> <span class="hl std">y</span><span class="hl opt">&lt;</span><span class="hl num">0</span><span class="hl std">)</span>
+                <span class="hl std">es</span> <span class="hl kwb">=</span> <span class="hl str">&quot;exterior&quot;</span>
+        <span class="hl kwa">else</span>
+                <span class="hl std">es</span> <span class="hl kwb">=</span> <span class="hl str">&quot;frontera&quot;</span>
+        <span class="hl kwd">return</span> <span class="hl std">(es)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Comprobamos si los distintos puntos dados son interiores, exteriores o frontera: </p>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">posicion</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">12</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;interior&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">posicion</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;frontera&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">posicion</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;exterior&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">posicion</span><span class="hl std">(</span><span class="hl num">30</span><span class="hl std">,</span><span class="hl num">30</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;exterior&quot;
+</pre></div>
+</div></div>
+
+	<p>
+	<ol>
+		<li> \((2,12)\) : Claramente es interior, se encuentra en el recinto delimitado por las dos funciones.
+		<li> \((0,0)\) : Es frontera, ya que no cumple las condiciones de ser punto interior y exterior y, además, pertenece a ambas gráficas.
+		<li> \((30,30)\) : Es exterior ya que se encuentra por encima de la función \(y=\sqrt{100x}\)
+		<li> \((-1,1)\) : Es exterior ya que aunque cumple la ecuación \(y=x^2\), no pertenece al primer cuadrante.
+	</ol>
+	</p>
+	
+	<br>
+	<p>Además de los resultados mostrados anteriormente, podemos reutilizar la función del <i>Ejercicio 1</i>, mostrar los
+	diferentes puntos y ver su posición respecto a nuestro recinto acotado. Realizamos la representación de ellos
+	redimensionando nuestro recinto (no mostramos el punto \((30,30)\) ya que se encuentra muy alejado del resto y la representación
+	del gráfico sería muy pequeña)</p>
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">,</span><span class="hl num">25</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">12</span><span class="hl std">,</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+
+	<h2>
+		<a name="E3">Ejercicio 3</a>
+	</h2>
+	<p><FONT SIZE=3>Construye una función que seleccione un valor, que llamamos \(A\), de una distribución uniforme en el intervalo (-1/100,1/100), y otro, que llamamos \(B\),
+	de una distribución normal de media 0 y varianza 1/100. Añade \((A,B)\) al punto \((2,12)\) y obtendrás un punto que llamaremos
+ 	\(P_0\).</font></p>
+
+
+	<p>Para la realización de este ejercicio, hacemos uso de las funciones <b>runif</b> y
+	<b>rnorm</b>, que nos proporcionarán valores de la distribución uniforme y normal, respectivamente. </p>
+
+	<p>Se ha realizado una función encapsulando ambas llamadas y que recibirá 3 parámetros.
+	Los dos primeros hacen referencia a las coordenadas del punto inicial, \((2,12)\) en nuestro caso
+	y, el tercero, que hace referencia al valor usado tanto para el intervalo de la distribución uniforme
+	como para la desviación típica de la normal: \(\sqrt{1/100}\) </p>
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">aniade</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span> <span class="hl kwc">y</span><span class="hl std">,</span> <span class="hl kwc">a</span><span class="hl std">){</span>
+        <span class="hl std">A</span><span class="hl kwb">&lt;-</span><span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">min</span><span class="hl std">=</span><span class="hl opt">-</span><span class="hl std">a,</span> <span class="hl kwc">max</span><span class="hl std">=a)</span>
+        <span class="hl std">B</span><span class="hl kwb">&lt;-</span><span class="hl kwd">rnorm</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">mean</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">sd</span><span class="hl std">=</span><span class="hl kwd">sqrt</span><span class="hl std">(a))</span>
+
+        <span class="hl kwd">return</span> <span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(x</span><span class="hl opt">+</span><span class="hl std">A, y</span><span class="hl opt">+</span><span class="hl std">B))</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+
+	<p>Llamamos a la función anterior y obtenemos el nuevo punto \(p_0\) </p>
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">p0</span><span class="hl kwb">&lt;-</span><span class="hl kwd">aniade</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl num">12</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl opt">/</span><span class="hl num">100</span><span class="hl std">)</span>
+<span class="hl std">p0</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1]  1.997786 11.984752
+</pre></div>
+</div></div>
+
+
+	<h2>
+		<a name="E4">Ejercicio 4</a>
+	</h2>
+	<p><FONT SIZE=3>Considera el recorrido aleatorio con barrera absorbente definido del siguiente modo: sea un punto que en el tiempo \(t=0\) 
+	comienza en el origen,  \(P_0\) del apartado anterior, y se desplaza del siguiente modo:
+		<ol>
+			<li> En cada tiempo \(t, t=1,2,\ldots\) se lanza un dado dos veces y una moneda dos veces.
+			<li> Si la suma de puntos de los dados es superior a \(5\), 
+			la coordenada \(x\) del punto se modifica para que aumente \(5\) centésimas, si no, 
+					disminuye \(5\) centésimas.
+			<li> Si las dos monedas son cara, la coordenada \(y\) del punto se modifica para que aumente \(5\) centésimas, 
+					si las dos son cruz, permanece inalterable y si no, 
+					disminuye \(5\) centésimas.
+			<li> A continuación el punto salta hasta sus nuevas coordenadas
+			<li> El proceso finaliza si, tras el salto, el punto alcanza el perímetro de la región o el exterior de la misma
+		</ol>
+
+    	Escribe una función que simule el movimiento del punto y devuelva, para un número máximo, \(M\), de pasos:
+		<ol>
+			<li>        La progresión aleatoria definida
+			<li>        Cuantos pasos han sido necesarios para llegar al límite o NA si no lo consigue
+		</ol>
+	</font></p>
+
+
+	<p> Comenzamos definiendo las dos funciones que simulan el lanzamiento de una moneda y de un dado, respectivamente.
+	Las dos reciben un parámetro, n, que indicará el número de monedas o dados a lanzar.</p>
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">lanz_monedas</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">){</span>
+        <span class="hl kwd">return</span> <span class="hl std">(</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">),</span> <span class="hl kwc">size</span><span class="hl std">=n))</span>
+<span class="hl std">}</span>
+
+<span class="hl std">lanz_dados</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">){</span>
+        <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">),</span> <span class="hl kwc">replace</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">size</span><span class="hl std">=n))</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Ahora bien, añadimos la función que establecerá el recorrido aleatorio con barrera absorbente que se ha descrito en el enunciado.
+	Se reciben 3 parámetros, los dos primeros indican las coordenadas del punto de partida y el segundo, M, hace referencia al número de pasos
+	 que se realizarán como máximo.</p>
+	<br>
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">recorrido_aleat</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">,</span> <span class="hl kwc">M</span><span class="hl std">){</span>
+        <span class="hl std">coord_x</span> <span class="hl kwb">&lt;-</span> <span class="hl std">x</span>
+        <span class="hl std">coord_y</span> <span class="hl kwb">&lt;-</span> <span class="hl std">y</span>
+
+        <span class="hl std">pasos</span> <span class="hl kwb">&lt;-</span> <span class="hl num">0</span>
+
+        <span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">M){</span>
+                <span class="hl std">monedas</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">lanz_monedas</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">)</span>
+                <span class="hl std">dados</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">lanz_dados</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">)</span>
+
+                <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">sum</span><span class="hl std">(dados)</span><span class="hl opt">&gt;</span><span class="hl num">5</span><span class="hl std">)</span>
+                        <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl std">x</span><span class="hl opt">+</span><span class="hl num">0.05</span>
+                <span class="hl kwa">else</span>
+                        <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl std">x</span><span class="hl opt">-</span><span class="hl num">0.05</span>
+
+                <span class="hl kwa">if</span><span class="hl std">(monedas[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl str">&quot;cara&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">monedas[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">)</span>
+                        <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl std">y</span><span class="hl opt">+</span><span class="hl num">0.05</span>
+                <span class="hl kwa">else if</span><span class="hl std">(monedas[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl str">&quot;cruz&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">monedas[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">)</span>
+                        <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl std">y</span>
+                <span class="hl kwa">else</span>
+                        <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl std">y</span><span class="hl opt">-</span><span class="hl num">0.05</span>
+
+                <span class="hl std">coord_x</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">c</span><span class="hl std">(coord_x, x)</span>
+                <span class="hl std">coord_y</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">c</span><span class="hl std">(coord_y, y)</span>
+
+                <span class="hl std">pasos</span> <span class="hl kwb">&lt;-</span> <span class="hl std">pasos</span><span class="hl opt">+</span><span class="hl num">1</span>
+
+                <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">posicion</span><span class="hl std">(x,y)</span><span class="hl opt">!=</span><span class="hl str">&quot;interior&quot;</span><span class="hl std">)</span>
+                        <span class="hl kwa">break</span><span class="hl std">;</span>
+        <span class="hl std">}</span>
+        <span class="hl kwa">if</span><span class="hl std">(pasos</span> <span class="hl opt">==</span> <span class="hl std">M)</span>
+                <span class="hl std">pasos</span> <span class="hl kwb">=</span> <span class="hl num">NA</span>
+        <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl kwd">list</span><span class="hl std">(</span><span class="hl kwc">CX</span><span class="hl std">=coord_x,</span> <span class="hl kwc">CY</span><span class="hl std">=coord_y,</span> <span class="hl kwc">P</span><span class="hl std">=pasos))</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+	<br>
+	<p>Llamamos a la función anterior para probar que funciona correctamente. En total, realizaremos
+	dos llamadas, una con \(M=5\) y otra con \(M=60\).
+	En la primera, como es lógico, nuestro punto no podrá salir del recinto ya que el número de pasos
+	es muy pequeño (devolverá NA) mientras que en la segunda... ¡Veámoslo!</p>
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">rec</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">recorrido_aleat</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl num">5</span><span class="hl std">)</span>
+<span class="hl std">rec</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## $CX
+## [1] 1.997786 2.047786 2.097786 2.047786 2.097786 2.047786
+## 
+## $CY
+## [1] 11.98475 11.93475 11.88475 11.83475 11.78475 11.73475
+## 
+## $P
+## [1] NA
+</pre></div>
+</div></div>
+
+<div class="chunk" id="unnamed-chunk-14"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">rec2</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">recorrido_aleat</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl num">60</span><span class="hl std">)</span>
+<span class="hl std">rec2</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## $CX
+##  [1] 1.997786 2.047786 2.097786 2.147786 2.197786 2.147786 2.197786 2.247786
+##  [9] 2.297786 2.247786 2.297786 2.347786 2.297786 2.347786 2.397786 2.447786
+## [17] 2.497786 2.547786 2.597786 2.647786 2.697786 2.747786 2.797786 2.847786
+## [25] 2.897786 2.947786 2.997786 3.047786 3.097786 3.147786 3.197786 3.247786
+## 
+## $CY
+##  [1] 11.98475 11.93475 11.88475 11.83475 11.78475 11.73475 11.68475 11.63475
+##  [9] 11.58475 11.53475 11.48475 11.43475 11.38475 11.33475 11.28475 11.23475
+## [17] 11.18475 11.13475 11.08475 11.03475 10.98475 10.93475 10.88475 10.83475
+## [25] 10.78475 10.73475 10.68475 10.63475 10.58475 10.53475 10.48475 10.43475
+## 
+## $P
+## [1] 31
+</pre></div>
+</div></div>
+
+
+
+
+
+	<h2>
+		<a name="E5">Ejercicio 5</a>
+	</h2>
+	<p><FONT SIZE=3>Realiza una simulación concreta del proceso con \(M=10000\) 
+	y represéntala gráficamente (mediante líneas) sobre la 
+	gráfica de la región.</font></p>
+
+
+
+	<p>Realizaremos la simulación basándonos en la siguiente función. Se le pasará la
+	progresión obtenida, el tipo de representación (lines/points) y el color que se usará para dicha
+	representación. </p>
+
+
+<div class="chunk" id="unnamed-chunk-15"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dibuja_simulacion</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">total</span><span class="hl std">,</span> <span class="hl kwc">tipo</span><span class="hl std">,</span> <span class="hl kwc">color</span><span class="hl std">){</span>
+        <span class="hl kwa">if</span><span class="hl std">(tipo</span> <span class="hl opt">==</span> <span class="hl str">&quot;lines&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">lines</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=total</span><span class="hl opt">$</span><span class="hl std">CX,</span> <span class="hl kwc">y</span><span class="hl std">=total</span><span class="hl opt">$</span><span class="hl std">CY,</span> <span class="hl kwc">col</span><span class="hl std">=color,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">0.6</span><span class="hl std">)</span>
+        <span class="hl kwa">else if</span><span class="hl std">(tipo</span> <span class="hl opt">==</span> <span class="hl str">&quot;points&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">points</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=total</span><span class="hl opt">$</span><span class="hl std">CX,</span> <span class="hl kwc">y</span><span class="hl std">=total</span><span class="hl opt">$</span><span class="hl std">CY,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=color,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+        <span class="hl kwa">else</span>
+                <span class="hl kwd">print</span><span class="hl std">(</span><span class="hl str">&quot;Introduzca un tipo de representación válida&quot;</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+	
+	<br>
+	<p>En nuestro caso, llamamos a la función con \(M=10000\), pero antes, debemos
+	dibujar nuestro recinto usando la función programada en el Ejercicio 1. Por último,
+	indicamos (como nos pide el ejercicio) que la representación gráfica se haga
+	mediante líneas:</p>
+
+<div class="chunk" id="unnamed-chunk-16"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">total</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">recorrido_aleat</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl num">10000</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_recinto</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">,</span><span class="hl num">25</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_simulacion</span><span class="hl std">(total,</span> <span class="hl kwc">tipo</span><span class="hl std">=</span><span class="hl str">&quot;lines&quot;</span><span class="hl std">,</span> <span class="hl kwc">color</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" class="plot" /></div></div>
+
+
+
+	<h2>
+		<a name="E6">Ejercicio 6</a>
+	</h2>
+	<p><FONT SIZE=3>Realiza esta misma representación gráfica centrada en 
+	el punto de salida y con una anchura y altura de 2 unidades.</font></p>	
+
+	<p>Volvemos a realizar la misma representación que en el ejercicio anterior.
+	Sin embargo, debemos modificar lévemente la función que dibuja nuestro recinto.
+	Para ello, añadiremos un parámetro <b>c</b> a nuestra función <b>dibuja_recinto_centrado</b>
+	que usará <b>plot</b> para indicar que los nuevos límites de <b>x</b> y de <b>y</b> sean 
+	\((x-c, x-c)\) y  \((y-c, y+c)\), respectivamente.
+	</p>
+	
+<div class="chunk" id="unnamed-chunk-17"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dibuja_recinto_centrado</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">,</span><span class="hl kwc">c</span><span class="hl std">){</span>
+        <span class="hl std">first</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){x</span><span class="hl opt">^</span><span class="hl num">2</span><span class="hl std">}</span>
+        <span class="hl std">second</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">){</span><span class="hl kwd">sqrt</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">x)}</span>
+        <span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;x&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(x</span><span class="hl opt">-</span><span class="hl std">c,x</span><span class="hl opt">+</span><span class="hl std">c),</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(y</span><span class="hl opt">-</span><span class="hl std">c,y</span><span class="hl opt">+</span><span class="hl std">c))</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">first</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;goldenrod1&quot;</span><span class="hl std">,</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">second</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">,</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+        <span class="hl kwd">legend</span><span class="hl std">(</span><span class="hl str">&quot;topleft&quot;</span><span class="hl std">,</span> <span class="hl kwc">inset</span><span class="hl std">=</span><span class="hl num">.02</span><span class="hl std">,</span> <span class="hl kwc">legend</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;y=x^2&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;sqrt(100*x)&quot;</span><span class="hl std">),</span>
+                <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;goldenrod1&quot;</span><span class="hl std">,</span><span class="hl str">&quot;indianred4&quot;</span><span class="hl std">),</span> <span class="hl kwc">lty</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">box.lty</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">0.8</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+	
+	<br>
+	<p>En nuestro caso, llamamos a la función con un valor de \(c=2\), pudiendo éste ser modificado
+	sin ningún problema y teniendo en cuenta que a mayor valor de \(c\), más alejado veremos nuestra representación gráfica.</p>
+<div class="chunk" id="unnamed-chunk-18"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto_centrado</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">c</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_simulacion</span><span class="hl std">(total,</span> <span class="hl kwc">tipo</span><span class="hl std">=</span><span class="hl str">&quot;lines&quot;</span><span class="hl std">,</span> <span class="hl kwc">color</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" class="plot" /></div></div>
+
+
+
+
+	<h2>
+		<a name="E7">Ejercicio 7</a>
+	</h2>
+	<p><FONT SIZE=3>Realiza cuatro simulaciones concretas del proceso con 
+	\(M=6000\) y represéntalas gráficamente sobre la gráfica de 
+	la región utilizando colores distintos para cada una</font></p>
+
+
+
+
+	<br>
+	<p>Este ejercicio se ha interpretado según 2 versiones: 
+
+	<ol>
+		<li> Realizar cuatro simulaciones y representarlas sobre una misma gráfica
+		<li> Realizar cuatro simulaciones y representarlas sobre distintas gráficas (usaremos <b>par</b>)
+	</ol>
+	</p>
+
+	<p>Realizamos una función que recoja ambas versiones y actuará una u otra según el valor de la variable
+	<b>juntas</b> pasado por argumento. Otros parámetros necesarios para la representación son:
+
+	<ol>
+		<li> \(p_0\) : Se trata del punto inicial de partida.
+		<li> colores: Contiene los diferentes colores para la representación de cada simulación. Se realizarán tantas simulaciones como nº de colores indicados.
+		<li> tipo: Puede ser lines o points.
+		<li> M: nº máximo de pasos.		
+	</ol>
+	</p>		
+
+
+<div class="chunk" id="unnamed-chunk-19"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dibuja_simulaciones</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">juntas</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">,</span> <span class="hl kwc">p0</span><span class="hl std">,</span> <span class="hl kwc">colores</span><span class="hl std">,</span> <span class="hl kwc">tipo</span><span class="hl std">,</span> <span class="hl kwc">M</span><span class="hl std">){</span>
+
+        <span class="hl kwa">if</span><span class="hl std">(juntas</span><span class="hl opt">==</span><span class="hl num">TRUE</span><span class="hl std">){</span>
+                <span class="hl kwd">dibuja_recinto_centrado</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">c</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+                <span class="hl kwd">dibuja_punto</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+
+                <span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl kwd">length</span><span class="hl std">(colores)){</span>
+                        <span class="hl std">rec</span><span class="hl kwb">&lt;-</span><span class="hl kwd">recorrido_aleat</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">], M)</span>
+                        <span class="hl kwd">dibuja_simulacion</span><span class="hl std">(rec, tipo,</span> <span class="hl kwc">color</span><span class="hl std">=colores[i])</span>
+                <span class="hl std">}</span>
+        <span class="hl std">}</span>
+        <span class="hl kwa">else</span><span class="hl std">{</span>
+                <span class="hl std">col</span><span class="hl kwb">&lt;-</span><span class="hl num">2</span>
+                <span class="hl std">fil</span><span class="hl kwb">&lt;-</span><span class="hl kwd">ceiling</span><span class="hl std">(</span><span class="hl kwd">length</span><span class="hl std">(colores)</span><span class="hl opt">/</span><span class="hl std">col)</span>
+                <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+                <span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                        <span class="hl kwd">dibuja_recinto_centrado</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">c</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+                        <span class="hl kwd">dibuja_punto</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+                        <span class="hl std">rec</span><span class="hl kwb">&lt;-</span><span class="hl kwd">recorrido_aleat</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">], M)</span>
+                        <span class="hl kwd">dibuja_simulacion</span><span class="hl std">(rec, tipo,</span> <span class="hl kwc">color</span><span class="hl std">=colores[i])</span>
+                <span class="hl std">}</span>
+        <span class="hl std">}</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Realizamos una primera representación llamando a la función anterior e indicando
+	con el parámetro \(juntas=FALSE\) que queremos que se representen en gráficas independientes:</p> 
+
+<div class="chunk" id="unnamed-chunk-20"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto_centrado</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">c</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl std">colores</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;darkorange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;ivory4&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;forestgreen&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;maroon4&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_simulaciones</span><span class="hl std">(</span><span class="hl kwc">juntas</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">, p0, colores,</span> <span class="hl str">&quot;lines&quot;</span><span class="hl std">,</span> <span class="hl num">10000</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-20-2.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" class="plot" /></div></div>
+
+
+	<br>
+	<p>Por otro lado, probamos de nuevo la función anterior indicando que queremos la representación de todas las simulaciones
+	en un único gráfico, \(juntas=TRUE\). Se realizarán 2 llamadas, una usando <b>lines</b> y otra usando <b>points</b>.</p>
+<div class="chunk" id="unnamed-chunk-21"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto_centrado</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">c</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+<span class="hl std">colores</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;darkorange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;ivory4&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;forestgreen&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;maroon4&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_simulaciones</span><span class="hl std">(</span><span class="hl kwc">juntas</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">, p0, colores,</span> <span class="hl str">&quot;lines&quot;</span><span class="hl std">,</span> <span class="hl num">10000</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" class="plot" /></div></div>
+
+
+	
+	<br>
+<div class="chunk" id="unnamed-chunk-22"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">dibuja_recinto_centrado</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">],p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">c</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_punto</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">text</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+<span class="hl std">colores</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;darkorange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;ivory4&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;forestgreen&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;maroon4&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">dibuja_simulaciones</span><span class="hl std">(</span><span class="hl kwc">juntas</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">, p0, colores,</span> <span class="hl str">&quot;points&quot;</span><span class="hl std">,</span> <span class="hl num">10000</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" class="plot" /></div></div>
+
+
+	<h2>
+		<a name="E8">Ejercicio 8</a>
+	</h2>
+	<p><FONT SIZE=3>Escribe una función con un argumento que permita repetir 
+	un número de veces, n, este proceso y devuelva un vector con
+	 el número de pasos necesarios para salir del recinto en cada 
+	repetición.</font></p>
+
+
+	<p>Para realizar esta función, simplemente tenemos que realizar un bucle que llame
+	un total de <b>n</b> veces a la función que simula el recorrido aleatorio.
+	Se le pasarán un total de 3 parámetros, el punto inicial \(p_0\), y los valores
+	<b>n</b> y <b>m</b> que indican el nº de repeticiones del proceso y el nº máximo
+	de pasos a realizar en cada repetición, respectivamente.</p>
+
+<div class="chunk" id="unnamed-chunk-23"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">distribucion_recorridos</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">p0</span><span class="hl std">,</span> <span class="hl kwc">n</span><span class="hl std">,</span> <span class="hl kwc">M</span><span class="hl std">){</span>
+        <span class="hl std">total</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">()</span>
+        <span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n)</span>
+                <span class="hl std">total</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl kwd">recorrido_aleat</span><span class="hl std">(p0[</span><span class="hl num">1</span><span class="hl std">], p0[</span><span class="hl num">2</span><span class="hl std">], M)</span><span class="hl opt">$</span><span class="hl std">P, total)</span>
+        <span class="hl kwd">return</span><span class="hl std">(total)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Mostramos el correcto funcionamiento de la función y mostramos los resultados obtenidos tras una llamada con 
+	los parámetros \(n=10\) y \(M=60\)</p>
+<div class="chunk" id="unnamed-chunk-24"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">distri</span><span class="hl kwb">&lt;-</span><span class="hl kwd">distribucion_recorridos</span><span class="hl std">(p0,</span> <span class="hl num">10</span><span class="hl std">,</span> <span class="hl num">60</span><span class="hl std">)</span>
+<span class="hl std">distri</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##  [1] NA 40 54 47 59 NA 52 50 50 38
+</pre></div>
+</div></div>
+
+
+	<h2>
+		<a name="E9">Ejercicio 9</a>
+	</h2>
+	<p><FONT SIZE=3>Analiza el vector que se obtiene con la función anterior para 
+	\(N=1000\) y \(M=3000\) y comenta cómo es la distribución del parámetro 
+	<i>pasos necesarios para llegar al límite</i> en este proceso. ¿Es M 
+	suficientemente grande? A la luz de lo obtenido, indica
+	 razonadamente si habría que usar un valor mayor o no, y en caso 
+	afirmativo, repítelo alterando el valor de M.</font></p>
+
+<div class="chunk" id="unnamed-chunk-25"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">min</span><span class="hl std">(distri)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] NA
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">min</span><span class="hl std">(distri,</span> <span class="hl kwc">na.rm</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 38
+</pre></div>
+</div></div>
+
+	<br>
+	<p> En vista de los valores que toma <b>distri</b> del ejercicio anterior y debido a la presencia de valores NA, funciones como la anterior no funcionarían correctamente.
+	A pesar de que <b>R</b> nos ofrece funciones o parámetros como \(na.rm = TRUE\) que nos ayudan a lidiar con 
+	este tipo de problemas, es preferible incrementar el valor de M
+	para poder estudiar la distribución a la que pertenece nuestro vector sin presencia de valores perdidos/NA. </p>
+
+	<br>
+	<p>Realizamos una simulación del proceso con \(N=1000\) y \(M=3000\)
+
+<div class="chunk" id="unnamed-chunk-26"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">N</span><span class="hl kwb">&lt;-</span><span class="hl num">1000</span>
+<span class="hl std">M</span><span class="hl kwb">&lt;-</span><span class="hl num">3000</span>
+<span class="hl std">pasos_necesarios</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">distribucion_recorridos</span><span class="hl std">(p0, N, M)</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Realizamos un resumen del vector obtenido. 
+	A continuación, podemos ver los distintos valores que representan
+	el mínimo, media, máximo, entre otros.</p>
+	
+<div class="chunk" id="unnamed-chunk-27"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">summary</span><span class="hl std">(pasos_necesarios)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   29.00   42.00   48.00   49.27   55.00   91.00
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Mostramos a continuación el histograma obtenido:</p>
+
+
+<div class="chunk" id="unnamed-chunk-28"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">hist</span><span class="hl std">(pasos_necesarios,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;pasos necesarios&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">,</span>
+        <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Pasos necesarios para llegar al límite&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;gray47&quot;</span><span class="hl std">,</span> <span class="hl kwc">border</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" class="plot" /></div></div>
+	
+	<p>A priori, nos vienen a la mente las siguientes distribuciones: 
+	<ol>
+		<li> <b>Uniforme</b> en el intervalo \([a,b ] = [min(pasos\_necesarios), max(pasos\_necesarios)] \). Sin embargo, al 
+		ver el histograma anterior podemos observar que los datos no se distribuyen uniformemente en todo el intervalo por lo 
+		que descartamos esta distribución.
+		<li> <b>Poisson</b> de parámetro \(lambda = mean(pasos\_necesarios)\). Esta distribución es apropiada
+		para variables aleatorias \(X\) que representan el número de ocurrencias de un suceso durante un periodo
+		de tiempo fijo o en una región fija del espacio.
+		<li> <b>Normal</b> de media \(mean(pasos\_necesarios)\) y desviación típica \(sd(pasos\_necesarios)\)
+	</ol>
+	</p>
+
+	<p>El siguiente paso que haremos será representar las distintas distribuciones a partir
+	de los valores que hemos obtenido, es decir, generaremos curvas teóricas a partir
+	de los valores del mínimo, media, desviación y máximo de nuestro conjunto de <i>pasos necesarios para
+	llegar al límite</i></p>
+	
+
+<div class="chunk" id="unnamed-chunk-29"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">hist</span><span class="hl std">(pasos_necesarios,</span>  <span class="hl kwc">prob</span><span class="hl std">=T,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Pasos necesarios&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;dDensidad&quot;</span><span class="hl std">,</span>
+<span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Pasos necesarios para llegar al límite&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;gray47&quot;</span><span class="hl std">,</span> <span class="hl kwc">border</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0.055</span><span class="hl std">))</span>
+
+<span class="hl kwd">lines</span><span class="hl std">(</span><span class="hl kwd">density</span><span class="hl std">(pasos_necesarios),</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;chocolate3&quot;</span><span class="hl std">)</span>
+
+<span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">dunif</span><span class="hl std">(x,</span> <span class="hl kwc">min</span><span class="hl std">=</span><span class="hl kwd">min</span><span class="hl std">(pasos_necesarios),</span> <span class="hl kwc">max</span><span class="hl std">=</span><span class="hl kwd">max</span><span class="hl std">(pasos_necesarios)),</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">curve</span><span class="hl std">(</span><span class="hl kwd">dnorm</span><span class="hl std">(x,</span> <span class="hl kwc">mean</span><span class="hl std">=</span><span class="hl kwd">mean</span><span class="hl std">(pasos_necesarios),</span> <span class="hl kwc">sd</span><span class="hl std">=</span><span class="hl kwd">sd</span><span class="hl std">(pasos_necesarios)) ,</span> <span class="hl kwc">add</span><span class="hl std">=T,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;dodgerblue&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">lines</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl opt">:</span><span class="hl kwd">max</span><span class="hl std">(pasos_necesarios),</span> <span class="hl kwd">dpois</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl opt">:</span><span class="hl kwd">max</span><span class="hl std">(pasos_necesarios),</span>
+        <span class="hl kwc">lambda</span><span class="hl std">=</span><span class="hl kwd">mean</span><span class="hl std">(pasos_necesarios)),</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red3&quot;</span><span class="hl std">)</span>
+<span class="hl com">#curve(dpois(x, lambda=mean(pasos_necesarios)), add=T, lwd=2, col=&quot;red3&quot;)</span>
+
+
+<span class="hl std">u</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Uniforme&quot;</span> <span class="hl std">,</span> <span class="hl str">&quot;(a=&quot;</span> <span class="hl std">,</span><span class="hl kwd">min</span><span class="hl std">(pasos_necesarios),</span> <span class="hl str">&quot;,&quot;</span> <span class="hl std">,</span> <span class="hl str">&quot;b=&quot;</span><span class="hl std">,</span> <span class="hl kwd">max</span><span class="hl std">(pasos_necesarios),</span> <span class="hl str">&quot;)&quot;</span> <span class="hl std">)</span>
+<span class="hl std">n</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Normal&quot;</span> <span class="hl std">,</span> <span class="hl str">&quot;(µ=&quot;</span> <span class="hl std">,</span><span class="hl kwd">round</span><span class="hl std">(</span><span class="hl kwd">mean</span><span class="hl std">(pasos_necesarios),</span><span class="hl num">2</span><span class="hl std">),</span> <span class="hl str">&quot;,&quot;</span> <span class="hl std">,</span> <span class="hl str">&quot;σ= &quot;</span> <span class="hl std">,</span> <span class="hl kwd">round</span><span class="hl std">(</span><span class="hl kwd">sd</span><span class="hl std">(pasos_necesarios),</span><span class="hl num">2</span><span class="hl std">) ,</span> <span class="hl str">&quot;)&quot;</span> <span class="hl std">)</span>
+<span class="hl std">p</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Poisson&quot;</span> <span class="hl std">,</span> <span class="hl str">&quot;(L=&quot;</span> <span class="hl std">,</span><span class="hl kwd">round</span><span class="hl std">(</span><span class="hl kwd">mean</span><span class="hl std">(pasos_necesarios),</span><span class="hl num">2</span><span class="hl std">) ,</span> <span class="hl str">&quot;)&quot;</span> <span class="hl std">)</span>
+
+<span class="hl std">u</span><span class="hl kwb">&lt;-</span><span class="hl kwd">gsub</span><span class="hl std">(</span><span class="hl str">&quot;\\s&quot;</span><span class="hl std">,</span> <span class="hl kwc">replacement</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">x</span><span class="hl std">=u)</span>
+<span class="hl std">n</span><span class="hl kwb">&lt;-</span><span class="hl kwd">gsub</span><span class="hl std">(</span><span class="hl str">&quot;\\s&quot;</span><span class="hl std">,</span> <span class="hl kwc">replacement</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">x</span><span class="hl std">=n)</span>
+<span class="hl std">p</span><span class="hl kwb">&lt;-</span><span class="hl kwd">gsub</span><span class="hl std">(</span><span class="hl str">&quot;\\s&quot;</span><span class="hl std">,</span> <span class="hl kwc">replacement</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">x</span><span class="hl std">=p)</span>
+
+
+<span class="hl kwd">legend</span><span class="hl std">(</span><span class="hl str">&quot;topright&quot;</span><span class="hl std">,</span> <span class="hl kwc">legend</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Pasos necesarios&quot;</span><span class="hl std">, u , n, p),</span>  <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span>
+        <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;chocolate3&quot;</span><span class="hl std">,</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;dodgerblue&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;red3&quot;</span><span class="hl std">),</span> <span class="hl kwc">lty</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">box.lty</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">0.9</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage center"><img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" class="plot" /></div></div>
+
+
+	
+
+	<p>Podemos observar que la curva de densidad que mejor se adapta a nuestros datos
+	es la <b>Normal</b> de media \(mean(pasos\_necesarios)\) y desviación típica \(sd(pasos\_necesarios)\).
+	Por tanto, la curva de nuestra muestra se ajusta a una distribución normal.</p>
+
+
+	<br>
+	<p>Antes de responder sobre la pregunta del apropiado de \(M\), veremos
+	el valor máximo requerido en todas las simulaciones para que nuestro 
+	punto salga del recinto: </p>	
+<div class="chunk" id="unnamed-chunk-30"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">max</span><span class="hl std">(pasos_necesarios)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 91
+</pre></div>
+</div></div>
+	
+	<br>
+	<p>Es decir, de las 1000 ejecuciones o simulaciones realizadas,
+	el valor máximo requerido para que el punto inicial salga del
+	recinto está muy por debajo de los \(M=3000\) usados en la ejecución
+	por lo que no haría falta repetir el proceso para un número mayor.</p>
+	
+	<p>Bien es cierto que si ejecutamos la primera vez <i> 'a ciegas' </i> no sabemos
+	a partir de qué valor nuestro punto saldrá del recinto por lo que es recomendable
+	tomar un valor inicial relativamente grande para no tener ningún valor perdido.</p> 
+	
+
+	<h2>
+		<a name="CC">Conclusiones</a>
+	</h2>
+	
+	
+	<p><b>R</b> es un entorno y lenguaje de programación con un enfoque estadístico
+	muy útil para el tratamiento y visualización de datos. Es la primera vez
+	que he usado este lenguaje, sin embargo, estoy satisfecho con la labor realizada en la asignatura.
+	Se me ha hecho muy entrenida y la verdad, programar en R facilita en gran medida
+	el estudio estadístico que se desea realizar.</p>
+	
+	<p>En relación tanto con esta práctica como con las anteriores, se ha tendido a modularizar
+	usando funciones para evitar la programación redundante. Por ello, todo lo realizado
+	aquí podría extrapolarse a casos más generales.</p>
+
+	<p>Como bien hemos comentado, para la realización de este proyecto
+	partíamos únicamente del libro <i>knitr</i>, usado para la generación
+	automática de este <b>HTML</b>. Todo lo demás se ha programado con la ayuda
+	de la documentación oficial, especialmente haciendo uso de la función <b>help()</b>,
+	la cual nos muestra información del comando pasado como argumento.</p>
+	
+	<p>En total, este trabajo se puede dividir en 3 partes:
+
+	<ol>
+		<li> <b>Representación gráfica:</b> Con ayuda de funciones como <b>plot</b> o <b>curve</b>
+		se ha creado y delimitado nuestro recinto. Además, usando <b>points</b>, se han reprentado numerosos
+		puntos para ver si eran exteriores, interiores o frontera, entre ellos nuestro punto inicial, obtenido
+		tras añadir un punto \((A,B)\) al \((2,12)\). </li>
+
+		<li> <b>Programación del recorrido aleatorio con barrera absorbente:</b> Se han seguido las pautas indicadas
+		en el ejercicio para la simulación del movimiento. Cabe destacar el uso de dos funciones
+		que determinaran y describirán la trayectoria que tomará nuestro punto. Estas son: <b>lanz_monedas</b> y
+		<b>lanz_dados</b>, que recibirán un parámetro <b>n</b> que indica el número de lanzamientos a realizar.
+		<br>
+		Después, usando <b>lines</b> y <b>points</b> se han representado en varias gráficas las diferentes trayectorias
+		que han tomado nuestras simulaciones. </li>
+
+
+		<li> <b>Estudio de la distribución del parámetro</b> <i>pasos necesarios para llegar al límite</i>:
+		Una vez llamada a la función que simula el recorrido aleatorio de nuestro punto, se ha estudiado la distribución
+		obtenida con \(N=1000, M=3000\) concluyendo que no era necesario aumentar el valor de \(M\) 
+		pero sí conveniente usar un valor relativamente alto. 
+		<br>
+		Por último, se han mostrado en un gráfico las diferentes curvas teóricas de distribuciones conocidas, de forma
+		que la distrbución que mejor se ha ajustado ha sido la distribución Normal. (con la misma media y 
+		desviación típica que la simulación obtenida).</li>
+	</ol>
+	</p>
+
+
+	
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="1.html">Ejercicios</a></p>
+      <p>Copyright &copy; simplestyle_horizon | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Simple web templates by HTML5</a></p>
+    </div>
+  </div>
+</body>
+</html>

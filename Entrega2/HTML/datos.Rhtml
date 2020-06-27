@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li><a href="moneda.html">Moneda</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li class="selected"><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<h2> Estudio de datos.txt </h2>
+
+
+	<p>Primeramente, establecemos nuestro directorio de trabajo habitual</p>
+	<!--begin.rcode
+	setwd("C:/Users/Alberto/Desktop/Computacional/Entrega2/html")
+	end.rcode-->
+
+
+	<p>Una vez hecho esto, abrimos el fichero <i>Datos.txt</i>
+	Para ello, usamos la función <i>read.csv</i>, pasándole como parámetro
+	header=TRUE (cabeceras) y, como separador, una coma.</p>
+
+	<!--begin.rcode
+	datos<-read.csv("Datos.txt", header=TRUE, sep=",")
+	end.rcode-->
+
+
+	<br>
+	<p>Guardamos los datos en una variable llamado <i>datos</i> que podemos llamar para mostrar su contenido.</p>
+
+
+	<!--begin.rcode
+	datos
+	end.rcode-->
+
+	<ol>
+	  <br>
+          <li><strong>Realizar una selección de filas:</strong> Seleccionamos
+		las tres primeras filas de nuestro data.frame que, como vemos
+		a continuación, si furma de hacerlo no es única </li>
+	
+	  <!--begin.rcode
+	  head(datos,n=3)
+	  end.rcode-->
+
+	  <!--begin.rcode
+	  datos[1:3,]
+	  end.rcode-->	
+
+
+	  <br>
+          <li><strong>Condición lógica con una variable:</strong> Pedimos que se muestren
+		los datos que se correspondan con <i>Sexo=Mujer</i>. </li>
+	
+	<!--begin.rcode
+	datos[datos$Sexo=="Mujer",]
+	end.rcode-->
+	  <br>
+	  <li><strong>Condición lógica con dos variables:</strong> Intersecamos la condición
+		anterior con aquellas mujeres cuya altura sea mayor a 175cm.</li>
+
+        <!--begin.rcode
+	datos[datos$Sexo=="Mujer"&datos$Altura>175,]
+	end.rcode-->
+
+	</ol>
+
+	
+
+
+
+
+	<p>Volviendo a nuestro fichero de datos original, invocamos a la función 
+	<i>plot()</i> y visualizamos el gráfico resultante:<p>
+
+
+
+	<!--begin.rcode
+	plot(datos)
+	end.rcode-->
+
+	<p>Si nos fijamos bien, la variable <i>Sexo</i> no es numérica y no tiene mucho
+	sentido su representación con este gráfico. Por ello, decidimos borrarla y 
+	mostrar el nuevo gráfico modificado.</p>
+
+	<p>Añadimos el libro <i>dplyr</i> y susamos su función <i>select</i>. Cabe destacar
+	que esta forma no es única pero lo realizamos así para practicar el uso de nuevos libros.</p>
+
+	<!--begin.rcode
+	library(dplyr)
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	datos_mod<-select(datos, Peso, Altura, Edad)
+	end.rcode-->
+
+	<br>
+	<p>Mostramos el gráfico modificado</p>
+	<!--begin.rcode
+	plot(datos_mod, main="Experimento modificado")
+	end.rcode-->
+
+
+	<p>Estudiamos ahora la correlación de las variables <i>Peso</i> y <i>Edad</i>
+	del archivo en cuestión. Para ello, necesitamos añadir el libro <i>ggplot2</i> y <i>ggthemes</i>.
+	Este último no es obligatorio ya que lo usamos para poner un tema de fondo. En lo que respecta a 
+	<i>ggplot2</i>, usamos la función <i>ggplot</i>. </p>
+
+	<!--begin.rcode
+	install.packages("ggthemes")
+	end.rcode-->
+
+
+
+	<!--begin.rcode
+	library(ggthemes)
+	end.rcode-->
+
+
+	<!--begin.rcode
+	library(ggplot2)
+	end.rcode-->
+
+	<br>
+	<p>Mostramos primero la relación entre <i>Peso</i> y <i>Edad</i> de nuestro dataset que, como vemos, 
+	no están correladas. En resumen, nuestro dataset se corresponde con un grupo de gente joven 
+	(entre 21 y 25 años de edad) y un peso entre 50 y 90 kg.</p>
+
+	<!--begin.rcode
+	ggplot(data=datos, aes(x=Edad, y=Peso))+geom_point()+theme_stata()+ggtitle("Relacion Edad y Peso")
+	end.rcode-->
+
+	<br>
+	<p>Mostramos ahora la relación entre <i>Altura</i> y <i>Edad</i> (la altura de los datos se encuentra entre 150 y 190cm)</p>
+	<!--begin.rcode
+	ggplot(data=datos, aes(x=Altura, y=Edad))+geom_point()+theme_stata()+ggtitle("Relacion Altura y Edad")
+	end.rcode-->
+
+	<br>
+	<p>Por último, nos interesa mostrar el mapa de calor o <i>heatmap</i> de nuestros datos.
+	Tenemos el problema de que no todas las variables cumplen la restricción de ser numéricas, pero por desgracia, 
+	la columna <i>Sexo</i> no cumple dicha restricción ya que sus valores <i>Hombre y Mujer</i> son nominales.
+	Usamos por ello la función <i>dummies</i> para transformarla. </p>
+
+	<!--begin.rcode
+	install.packages("dummies")
+	end.rcode-->
+
+
+	<!--begin.rcode echo=FALSE
+	library(dummies)
+	end.rcode-->
+
+
+	<!--begin.rcode
+	datos.new<-dummy.data.frame(datos, sep=" ")
+	end.rcode-->
+
+
+	<br>
+	<p>Mostramos el mapa de calor: </p>
+	<!--begin.rcode
+	heatmap(as.matrix(datos.new[,1:5]))
+	end.rcode-->
+
+	<p>El mapa quizás no nos aporte mucha información. Realmente
+	habría que normalizar los datos ya que las diferentes variables
+	no se mueven en la misma distancia. Por ejemplo, los valores de 
+	<i>Altura</i> se registran entre 150-190cm mientras que la
+	<i>Edad</i> en torno a 21-25 años. </p>
+
+
+
+
+	<br>
+	<h2> Estudio de datos2.txt </h2>
+	
+	<p>Estudiamos el archivo <i>Datos2.txt</i>. Lo abrimos con la función <i>read.csv</i></p>
+
+
+	<!--begin.rcode
+	datos2<-read.csv("Datos2.txt", header=TRUE, sep=" ")
+	end.rcode-->
+
+	<!--begin.rcode
+	datos2
+	end.rcode-->
+
+
+
+	<p>Imaginemos que queremos estudiar las variables numéricas...
+	Observando las columnas, vemos que tanto <i>Nombre</i> como 
+	<i>Sexo</i> deben ser borradas por ser nominales:</p>
+
+	<!--begin.rcode
+	library(dplyr)
+	end.rcode-->
+
+
+	<!--begin.rcode
+	datos2_mod<-select(datos2, Peso, Altura, Edad)
+	end.rcode-->
+    
+	<p>En el apartado anterior vimos una forma de seleccionar columnas 
+	(usando <i>select</i> del paquete <i>dplyr</i>). Sin embargo,
+	podemos usar también <i>subset</i> para obtener el mismo resultado:</p>
+
+	<!--begin.rcode
+	datos2_mod2<-subset(datos2, select=c(Peso,Altura, Edad))
+	end.rcode-->
+    
+	<br>
+	<p>Comprobamos que son iguales:</p>
+	<!--begin.rcode
+	identical(datos2_mod, datos2_mod2)
+	end.rcode-->
+    
+
+	<!--begin.rcode
+	datos2_mod
+	end.rcode-->
+    
+
+	<br>
+	<p>Volvemos a llamar a las funciones <i>ggplot</i> pero para el caso
+	de <i>Datos2.txt</i>, teniendo en cuenta que no hay que invocar la llamada
+	de su libro ya que se había realizado anteriormente.</p>
+	<!--begin.rcode
+	ggplot(data=datos2, aes(x=Edad, y=Peso))+geom_point()+
+		theme_stata()+ggtitle("Relacion Edad y Peso (Datos2.txt)")
+	end.rcode-->
+    
+
+	<!--begin.rcode
+	ggplot(data=datos2, aes(x=Altura, y=Edad))+geom_point()+
+		theme_stata()+ggtitle("Relacion Altura y Edad (Datos2.txt)")
+	end.rcode-->
+    
+	<p>Vemos que se trata de un dataset de personas de entre 50 y 90 kg,
+	en torno a 20-30 años de edad (a excepción de un outlier de unos 45 años)
+	y altura variable, desde 1,60 a 1,85 metros.</p>
+	
+	<br>
+	<p>Realizamos otros tipos de gráficos. Mostramos a continuación un diagrama de barras del archivo.
+	Recordamos que tanto para este gráfico como para el histograma de abajo se ha hecho uso de la función <i>help</i>,
+	donde hemos podido informarnos acerca de todos sus parámetros y así hacer el gráfico más atractivo.</p>
+	
+	<!--begin.rcode
+	help(barplot)
+	end.rcode-->
+
+	<!--begin.rcode
+	help(hist)
+	end.rcode-->
+
+	<!--begin.rcode
+	barplot(datos$Peso, main="Peso", col=c("yellow","red"), 
+		names.arg=c("Muestras"), density=50, border="black", ylab="Kilogramos")
+	end.rcode-->
+    	
+	<p>Presentamos un problema de estética en este primer diagrama ya que debido al
+	gran número de instancias, se crean demasiadas barras y quizás es conveniente
+	usar otro tipo de gráfico.</p>
+
+	<p>Por ello, introducimos los histogramas que, para este tipo de situaciones, 
+	resultan mucho más visuales y, como consecuencia, la 
+	información reflejada se entiende mucho mejor</p>
+
+	<!--begin.rcode
+	hist(datos$Peso, main="Peso", col=c("black","yellow"), xlab="Kilogramos", ylab="Frecuencia", density=120)
+	end.rcode-->
+    
+        
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

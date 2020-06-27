@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Estudio de Gráficos en R</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="principal.html">Principal</a></li>
+          <li class="selected"><a href="epígrafe1.html">Epígrafe 1</a></li>
+          <li><a href="epígrafe2.html">Epígrafe 2</a></li>
+          <li><a href="epígrafe3.html">Epígrafe 3</a></li>
+          <li><a href="epígrafe4.html">Epígrafe 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>10/05/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Función de densidad y distribución</h2>
+
+	
+	<h1>Distribución Normal</h1>
+	<h3>dnorm, pnorm</h3>
+
+	<p>Las funciones <strong>dnorm</strong> y <strong>pnorm</strong>
+	sirven para representar la función de densidad y de distribución de una
+	distribución Normal</p>
+	<p>Hacemos uso de la función <i>Dibuja</i> del guión de prácticas.</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">Dibuja_normal</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span><span class="hl kwc">alfa</span><span class="hl std">=</span><span class="hl num">.001</span><span class="hl std">,</span><span class="hl kwc">fil</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl kwc">col</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">){</span>
+        <span class="hl com">#Dibuja la funcion de densidad</span>
+        <span class="hl com">#y la de distribucion de la normal</span>
+        <span class="hl std">n</span><span class="hl kwb">&lt;-</span><span class="hl kwd">as.integer</span><span class="hl std">(n)</span>
+        <span class="hl kwa">if</span> <span class="hl std">(n</span><span class="hl opt">&lt;</span><span class="hl num">10</span><span class="hl std">)</span> <span class="hl kwd">stop</span><span class="hl std">(</span><span class="hl str">&quot;Hacen falta mas numeros&quot;</span><span class="hl std">)</span>
+        <span class="hl std">a</span><span class="hl kwb">&lt;-</span><span class="hl kwd">qnorm</span><span class="hl std">(alfa)</span>
+        <span class="hl std">b</span><span class="hl kwb">&lt;-</span><span class="hl kwd">qnorm</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">alfa)</span>
+
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+        <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                <span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">seq</span><span class="hl std">(a,b,,i</span><span class="hl opt">*</span><span class="hl std">n)</span>
+                <span class="hl kwd">plot</span><span class="hl std">(x,</span><span class="hl kwd">dnorm</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Función de densidad&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+        <span class="hl std">}</span>
+
+
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+        <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                <span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">seq</span><span class="hl std">(a,b,,i</span><span class="hl opt">*</span><span class="hl std">n)</span>
+                <span class="hl kwd">plot</span><span class="hl std">(x,</span><span class="hl kwd">pnorm</span><span class="hl std">(x),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;blue&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Función de distribución&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+        <span class="hl std">}</span>
+
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Llamamos a la función anterior: </p>
+
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">Dibuja_normal</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">50</span><span class="hl std">,</span> <span class="hl kwc">alfa</span><span class="hl std">=</span><span class="hl num">.001</span><span class="hl std">,</span> <span class="hl kwc">fil</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1c.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div><div class="rimage default"><img src="figure/unnamed-chunk-2-2c.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+
+	<h1>Distribución Uniforme</h1>
+	<h3>dunif, punif</h3>
+
+	<br>
+	<p>Modificamos la función anterior <strong>Dibuja</strong> para
+	representar la distribución uniforme entre 0 y 1. Para ello 
+	añadimos dos nuevos parámetros que se le pasarán a <strong>dunif</strong> y 
+	a <strong>punif</strong> cuando se vayan a lanzar con plot</p>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">Dibuja_uniforme</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span><span class="hl kwc">alfa</span><span class="hl std">=</span><span class="hl num">.001</span><span class="hl std">,</span><span class="hl kwc">fil</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl kwc">col</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">min1</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">max1</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">){</span>
+        <span class="hl com">#Dibuja la funcion de densidad</span>
+        <span class="hl com">#y la de distribucion de la uniforme</span>
+        <span class="hl std">n</span><span class="hl kwb">&lt;-</span><span class="hl kwd">as.integer</span><span class="hl std">(n)</span>
+        <span class="hl kwa">if</span> <span class="hl std">(n</span><span class="hl opt">&lt;</span><span class="hl num">10</span><span class="hl std">)</span> <span class="hl kwd">stop</span><span class="hl std">(</span><span class="hl str">&quot;Hacen falta mas numeros&quot;</span><span class="hl std">)</span>
+        <span class="hl std">a</span><span class="hl kwb">&lt;-</span><span class="hl kwd">qnorm</span><span class="hl std">(alfa)</span>
+        <span class="hl std">b</span><span class="hl kwb">&lt;-</span><span class="hl kwd">qnorm</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">alfa)</span>
+
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+        <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                <span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">seq</span><span class="hl std">(a,b,,i</span><span class="hl opt">*</span><span class="hl std">n)</span>
+                <span class="hl kwd">plot</span><span class="hl std">(x,</span><span class="hl kwd">dunif</span><span class="hl std">(x,</span> <span class="hl kwc">min</span><span class="hl std">=min1,</span> <span class="hl kwc">max</span><span class="hl std">=max1),</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Función de densidad&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+
+        <span class="hl std">}</span>
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+        <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                <span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">seq</span><span class="hl std">(a,b,,i</span><span class="hl opt">*</span><span class="hl std">n)</span>
+                <span class="hl kwd">plot</span><span class="hl std">(x,</span><span class="hl kwd">punif</span><span class="hl std">(x,</span> <span class="hl kwc">min</span><span class="hl std">=min1,</span> <span class="hl kwc">max</span><span class="hl std">=max1),</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;blue&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Función de distribución&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+        <span class="hl std">}</span>
+
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Llamamos a la función anterior para representar las funciones de densidad
+	y uniforme de la distribución uniforme: </p>
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">Dibuja_uniforme</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">50</span><span class="hl std">,</span> <span class="hl kwc">alfa</span><span class="hl std">=</span><span class="hl num">.001</span><span class="hl std">,</span> <span class="hl kwc">fil</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">min1</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">max1</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1c.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div><div class="rimage default"><img src="figure/unnamed-chunk-4-2c.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+
+
+	
+	<h3>?Distributions</h3>
+	<p>Con este comando, podemos ver información sobre todas las distribuciones 
+	que existen en R </p>
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl opt">?</span><span class="hl std">Distributions</span>
+</pre></div>
+</div></div>
+	
+	<h1>Distribución de Poisson</h1>
+	<p>Escogemos la distribución de Poisson, por ejemplo, para mostrar sus gráficas
+	con la ayuda de dos funciones:</p>
+
+	<h3>dpois, ppois</h3>
+	<p> Modificamos la función para representar la función de densidad y
+	distribución de la Poisson.</p>
+	<p>Le pasamos el valor <i>lambda</i> por parámetro</p> 
+
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">Dibuja_poisson</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span><span class="hl kwc">alfa</span><span class="hl std">=</span><span class="hl num">.001</span><span class="hl std">,</span> <span class="hl kwc">fil</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">l</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">){</span>
+        <span class="hl com">#Dibuja la funcion de densidad</span>
+        <span class="hl com">#y la de distribucion de Poisson</span>
+        <span class="hl std">n</span><span class="hl kwb">&lt;-</span><span class="hl kwd">as.integer</span><span class="hl std">(n)</span>
+        <span class="hl kwa">if</span> <span class="hl std">(n</span><span class="hl opt">&lt;</span><span class="hl num">10</span><span class="hl std">)</span> <span class="hl kwd">stop</span><span class="hl std">(</span><span class="hl str">&quot;Hacen falta mas numeros&quot;</span><span class="hl std">)</span>
+        <span class="hl std">a</span><span class="hl kwb">&lt;-</span><span class="hl kwd">qnorm</span><span class="hl std">(alfa)</span>
+        <span class="hl std">b</span><span class="hl kwb">&lt;-</span><span class="hl kwd">qnorm</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">alfa)</span>
+
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+        <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                <span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,n)</span>
+                <span class="hl kwd">plot</span><span class="hl std">(x,</span><span class="hl kwd">dpois</span><span class="hl std">(x,</span> <span class="hl kwc">lambda</span><span class="hl std">=l),</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Función de densidad&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+
+        <span class="hl std">}</span>
+        <span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(fil,col))</span>
+        <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(fil</span><span class="hl opt">*</span><span class="hl std">col)){</span>
+                <span class="hl std">x</span><span class="hl kwb">&lt;-</span><span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,n)</span>
+                <span class="hl kwd">plot</span><span class="hl std">(x,</span><span class="hl kwd">ppois</span><span class="hl std">(x,</span> <span class="hl kwc">lambda</span><span class="hl std">=l),</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;y&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;blue&quot;</span><span class="hl std">)</span>
+                <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Función de distribución&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">)</span>
+        <span class="hl std">}</span>
+
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">Dibuja_poisson</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">60</span><span class="hl std">,</span> <span class="hl kwc">l</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-7-1c.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div><div class="rimage default"><img src="figure/unnamed-chunk-7-2c.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="epígrafe1.html">Epígrafe 1</a> | <a href="epígrafe2.html">Epígrafe 2</a> | <a href="epígrafe3.html">Epígrafe 3</a> | <a href="epígrafe4.html">Epígrafe 4</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li><a href="moneda.html">Moneda</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<hr>
+		<ul>
+			<li><a href="#1">Introducción</a></li>
+			<li><a href="baraja.html">Baraja de Cartas</a></li>
+			<li><a href="moneda.html">Moneda</a></li>
+			<li><a href="dados.html">Dados</a></li>
+			<li><a href="datos.html">Datos y Datos2</a></li>
+		</ul>
+	
+	
+	<hr>
+
+	<h2>
+		<a name="1">Introducción</a>
+	</h2>
+
+	<p>En esta práctica realizaremos diferentes experimentos y probaremos comandos y funcionalidades que nos ofrece <strong>R</strong>.</p>
+	<p>Especialmente, nos centraremos en el paquete <strong>knitr</strong>, el cual nos ofrece una herramienta que transforma nuestro archivo de <strong>Rhtml</strong> en <strong>html</strong>,
+	tal y como se ha realizado con este proyecto.</p>
+	
+	<p>Para usarla la instalamos y la añadimos:</p>
+	<!--begin.rcode
+	library(knitr)
+	end.rcode-->	
+	<br>
+
+	<p>Puede pinchar sobre los respectivos campos de la barra superior para comprobar los diferentes experimentos que se han realizado explorando el potencial de <strong>R</strong>.</p>
+	
+
+	<p>Como se hizo en clase, en cada sesión de trabajo establecemos nuestro directorio de trabajo con la orden <i>setwd()</i>, pudiéndose ésta comprobarse con <i>getwd()</i> </p>
+
+
+        <!--begin.rcode
+setwd("C:/Users/Alberto/Desktop/Computacional/Entrega2/html")
+	end.rcode-->
+
+	<!--begin.rcode
+	getwd()
+	end.rcode-->
+
+	<br>
+	<p>Por otro lado, para documentarse sobre las funciones de R, nos apoyaremos en la función <i>help()<i> y, para añadir nuevos paquetes, en <i>library()<i> </p>
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li><a href="moneda.html">Moneda</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li class="selected"><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+
+	<h2> Estudio de datos.txt </h2>
+
+
+	<p>Primeramente, establecemos nuestro directorio de trabajo habitual</p>
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">setwd</span><span class="hl std">(</span><span class="hl str">&quot;C:/Users/Alberto/Desktop/Computacional/Entrega2/html&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+
+	<p>Una vez hecho esto, abrimos el fichero <i>Datos.txt</i>
+	Para ello, usamos la función <i>read.csv</i>, pasándole como parámetro
+	header=TRUE (cabeceras) y, como separador, una coma.</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos</span><span class="hl kwb">&lt;-</span><span class="hl kwd">read.csv</span><span class="hl std">(</span><span class="hl str">&quot;Datos.txt&quot;</span><span class="hl std">,</span> <span class="hl kwc">header</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">sep</span><span class="hl std">=</span><span class="hl str">&quot;,&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Guardamos los datos en una variable llamado <i>datos</i> que podemos llamar para mostrar su contenido.</p>
+
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad   Sexo
+## 1    75    175   21 Hombre
+## 2    81    178   22 Hombre
+## 3    56    162   22  Mujer
+## 4    68    180   21  Mujer
+## 5    79    182   24 Hombre
+## 6    89    185   22 Hombre
+## 7    62    157   21  Mujer
+## 8    59    165   22  Mujer
+## 9    83    180   23 Hombre
+## 10   55    160   22  Mujer
+## 11   72    174   21 Hombre
+## 12   56    161   23  Mujer
+## 13   84    182   22 Hombre
+## 14   64    163   24  Mujer
+## 15   76    172   22 Hombre
+## 16   68    169   21  Mujer
+## 17   58    162   24 Hombre
+## 18   78    178   22 Hombre
+## 19   62    157   21  Mujer
+## 20   77    165   21 Hombre
+## 21   71    182   22  Mujer
+## 22   55    163   24  Mujer
+## 23   78    174   25 Hombre
+## 24   77    181   23 Hombre
+## 25   81    181   22 Hombre
+## 26   75    174   23 Hombre
+## 27   60    167   21  Mujer
+## 28   68    178   21 Hombre
+## 29   68    182   22  Mujer
+## 30   89    185   22 Hombre
+## 31   82    190   21 Hombre
+## 32   59    155   22  Mujer
+## 33   63    173   21  Mujer
+## 34   75    177   24 Hombre
+## 35   62    174   21  Mujer
+## 36   81    183   22 Hombre
+</pre></div>
+</div></div>
+
+	<ol>
+	  <br>
+          <li><strong>Realizar una selección de filas:</strong> Seleccionamos
+		las tres primeras filas de nuestro data.frame que, como vemos
+		a continuación, si furma de hacerlo no es única </li>
+	
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">head</span><span class="hl std">(datos,</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">3</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##   Peso Altura Edad   Sexo
+## 1   75    175   21 Hombre
+## 2   81    178   22 Hombre
+## 3   56    162   22  Mujer
+</pre></div>
+</div></div>
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">3</span><span class="hl std">,]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##   Peso Altura Edad   Sexo
+## 1   75    175   21 Hombre
+## 2   81    178   22 Hombre
+## 3   56    162   22  Mujer
+</pre></div>
+</div></div>
+
+
+	  <br>
+          <li><strong>Condición lógica con una variable:</strong> Pedimos que se muestren
+		los datos que se correspondan con <i>Sexo=Mujer</i>. </li>
+	
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos[datos</span><span class="hl opt">$</span><span class="hl std">Sexo</span><span class="hl opt">==</span><span class="hl str">&quot;Mujer&quot;</span><span class="hl std">,]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad  Sexo
+## 3    56    162   22 Mujer
+## 4    68    180   21 Mujer
+## 7    62    157   21 Mujer
+## 8    59    165   22 Mujer
+## 10   55    160   22 Mujer
+## 12   56    161   23 Mujer
+## 14   64    163   24 Mujer
+## 16   68    169   21 Mujer
+## 19   62    157   21 Mujer
+## 21   71    182   22 Mujer
+## 22   55    163   24 Mujer
+## 27   60    167   21 Mujer
+## 29   68    182   22 Mujer
+## 32   59    155   22 Mujer
+## 33   63    173   21 Mujer
+## 35   62    174   21 Mujer
+</pre></div>
+</div></div>
+	  <br>
+	  <li><strong>Condición lógica con dos variables:</strong> Intersecamos la condición
+		anterior con aquellas mujeres cuya altura sea mayor a 175cm.</li>
+
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r">        <span class="hl std">datos[datos</span><span class="hl opt">$</span><span class="hl std">Sexo</span><span class="hl opt">==</span><span class="hl str">&quot;Mujer&quot;</span><span class="hl opt">&amp;</span><span class="hl std">datos</span><span class="hl opt">$</span><span class="hl std">Altura</span><span class="hl opt">&gt;</span><span class="hl num">175</span><span class="hl std">,]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad  Sexo
+## 4    68    180   21 Mujer
+## 21   71    182   22 Mujer
+## 29   68    182   22 Mujer
+</pre></div>
+</div></div>
+
+	</ol>
+
+	
+
+
+
+
+	<p>Volviendo a nuestro fichero de datos original, invocamos a la función 
+	<i>plot()</i> y visualizamos el gráfico resultante:<p>
+
+
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(datos)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+	<p>Si nos fijamos bien, la variable <i>Sexo</i> no es numérica y no tiene mucho
+	sentido su representación con este gráfico. Por ello, decidimos borrarla y 
+	mostrar el nuevo gráfico modificado.</p>
+
+	<p>Añadimos el libro <i>dplyr</i> y susamos su función <i>select</i>. Cabe destacar
+	que esta forma no es única pero lo realizamos así para practicar el uso de nuevos libros.</p>
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(dplyr)</span>
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos_mod</span><span class="hl kwb">&lt;-</span><span class="hl kwd">select</span><span class="hl std">(datos, Peso, Altura, Edad)</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Mostramos el gráfico modificado</p>
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(datos_mod,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Experimento modificado&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+
+
+	<p>Estudiamos ahora la correlación de las variables <i>Peso</i> y <i>Edad</i>
+	del archivo en cuestión. Para ello, necesitamos añadir el libro <i>ggplot2</i> y <i>ggthemes</i>.
+	Este último no es obligatorio ya que lo usamos para poner un tema de fondo. En lo que respecta a 
+	<i>ggplot2</i>, usamos la función <i>ggplot</i>. </p>
+
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">install.packages</span><span class="hl std">(</span><span class="hl str">&quot;ggthemes&quot;</span><span class="hl std">)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## Installing package into 'C:/Users/Alberto/Documents/R/win-library/3.6'
+## (as 'lib' is unspecified)
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning: package 'ggthemes' is in use and will not be installed
+</pre></div>
+</div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(ggthemes)</span>
+</pre></div>
+</div></div>
+
+
+<div class="chunk" id="unnamed-chunk-14"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(ggplot2)</span>
+</pre></div>
+</div></div>
+
+	<br>
+	<p>Mostramos primero la relación entre <i>Peso</i> y <i>Edad</i> de nuestro dataset que, como vemos, 
+	no están correladas. En resumen, nuestro dataset se corresponde con un grupo de gente joven 
+	(entre 21 y 25 años de edad) y un peso entre 50 y 90 kg.</p>
+
+<div class="chunk" id="unnamed-chunk-15"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">ggplot</span><span class="hl std">(</span><span class="hl kwc">data</span><span class="hl std">=datos,</span> <span class="hl kwd">aes</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=Edad,</span> <span class="hl kwc">y</span><span class="hl std">=Peso))</span><span class="hl opt">+</span><span class="hl kwd">geom_point</span><span class="hl std">()</span><span class="hl opt">+</span><span class="hl kwd">theme_stata</span><span class="hl std">()</span><span class="hl opt">+</span><span class="hl kwd">ggtitle</span><span class="hl std">(</span><span class="hl str">&quot;Relacion Edad y Peso&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" class="plot" /></div></div>
+
+	<br>
+	<p>Mostramos ahora la relación entre <i>Altura</i> y <i>Edad</i> (la altura de los datos se encuentra entre 150 y 190cm)</p>
+<div class="chunk" id="unnamed-chunk-16"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">ggplot</span><span class="hl std">(</span><span class="hl kwc">data</span><span class="hl std">=datos,</span> <span class="hl kwd">aes</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=Altura,</span> <span class="hl kwc">y</span><span class="hl std">=Edad))</span><span class="hl opt">+</span><span class="hl kwd">geom_point</span><span class="hl std">()</span><span class="hl opt">+</span><span class="hl kwd">theme_stata</span><span class="hl std">()</span><span class="hl opt">+</span><span class="hl kwd">ggtitle</span><span class="hl std">(</span><span class="hl str">&quot;Relacion Altura y Edad&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" class="plot" /></div></div>
+
+	<br>
+	<p>Por último, nos interesa mostrar el mapa de calor o <i>heatmap</i> de nuestros datos.
+	Tenemos el problema de que no todas las variables cumplen la restricción de ser numéricas, pero por desgracia, 
+	la columna <i>Sexo</i> no cumple dicha restricción ya que sus valores <i>Hombre y Mujer</i> son nominales.
+	Usamos por ello la función <i>dummies</i> para transformarla. </p>
+
+<div class="chunk" id="unnamed-chunk-17"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">install.packages</span><span class="hl std">(</span><span class="hl str">&quot;dummies&quot;</span><span class="hl std">)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## Installing package into 'C:/Users/Alberto/Documents/R/win-library/3.6'
+## (as 'lib' is unspecified)
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning: package 'dummies' is in use and will not be installed
+</pre></div>
+</div></div>
+
+
+
+
+
+<div class="chunk" id="unnamed-chunk-19"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos.new</span><span class="hl kwb">&lt;-</span><span class="hl kwd">dummy.data.frame</span><span class="hl std">(datos,</span> <span class="hl kwc">sep</span><span class="hl std">=</span><span class="hl str">&quot; &quot;</span><span class="hl std">)</span>
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning in model.matrix.default(~x - 1, model.frame(~x - 1), contrasts =
+## FALSE): non-list contrasts argument ignored
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Mostramos el mapa de calor: </p>
+<div class="chunk" id="unnamed-chunk-20"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">heatmap</span><span class="hl std">(</span><span class="hl kwd">as.matrix</span><span class="hl std">(datos.new[,</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">5</span><span class="hl std">]))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" class="plot" /></div></div>
+
+	<p>El mapa quizás no nos aporte mucha información. Realmente
+	habría que normalizar los datos ya que las diferentes variables
+	no se mueven en la misma distancia. Por ejemplo, los valores de 
+	<i>Altura</i> se registran entre 150-190cm mientras que la
+	<i>Edad</i> en torno a 21-25 años. </p>
+
+
+
+
+	<br>
+	<h2> Estudio de datos2.txt </h2>
+	
+	<p>Estudiamos el archivo <i>Datos2.txt</i>. Lo abrimos con la función <i>read.csv</i></p>
+
+
+<div class="chunk" id="unnamed-chunk-21"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos2</span><span class="hl kwb">&lt;-</span><span class="hl kwd">read.csv</span><span class="hl std">(</span><span class="hl str">&quot;Datos2.txt&quot;</span><span class="hl std">,</span> <span class="hl kwc">header</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">,</span> <span class="hl kwc">sep</span><span class="hl std">=</span><span class="hl str">&quot; &quot;</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<div class="chunk" id="unnamed-chunk-22"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos2</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##            Nombre Peso Altura Edad Sexo
+## 1    Juana Garcia   77   1.63   23    M
+## 2    Silvia Lopez   58   1.63   23    M
+## 3   Andres Garces   89   1.85   26    H
+## 4     Laura Perez   55   1.62   23    M
+## 5           Adela   47   1.60   26    M
+## 6   Yolanda Lopez   60   1.63   26    M
+## 7   Lola Martinez   54   1.70   22    M
+## 8  Alberto Garcia   58   1.65   23    H
+## 9      Pedro Vera   75   1.78   26    H
+## 10   Diego Moreno   65   1.70   24    H
+## 11   Julio Angulo   82   1.77   28    H
+## 12    Juan Trucha   85   1.83   42    H
+## 13   Rafael Perez   75   1.74   25    H
+## 14 Monica Sanchez   65   1.65   26    M
+</pre></div>
+</div></div>
+
+
+
+	<p>Imaginemos que queremos estudiar las variables numéricas...
+	Observando las columnas, vemos que tanto <i>Nombre</i> como 
+	<i>Sexo</i> deben ser borradas por ser nominales:</p>
+
+<div class="chunk" id="unnamed-chunk-23"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(dplyr)</span>
+</pre></div>
+</div></div>
+
+
+<div class="chunk" id="unnamed-chunk-24"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos2_mod</span><span class="hl kwb">&lt;-</span><span class="hl kwd">select</span><span class="hl std">(datos2, Peso, Altura, Edad)</span>
+</pre></div>
+</div></div>
+    
+	<p>En el apartado anterior vimos una forma de seleccionar columnas 
+	(usando <i>select</i> del paquete <i>dplyr</i>). Sin embargo,
+	podemos usar también <i>subset</i> para obtener el mismo resultado:</p>
+
+<div class="chunk" id="unnamed-chunk-25"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos2_mod2</span><span class="hl kwb">&lt;-</span><span class="hl kwd">subset</span><span class="hl std">(datos2,</span> <span class="hl kwc">select</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(Peso,Altura, Edad))</span>
+</pre></div>
+</div></div>
+    
+	<br>
+	<p>Comprobamos que son iguales:</p>
+<div class="chunk" id="unnamed-chunk-26"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">identical</span><span class="hl std">(datos2_mod, datos2_mod2)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] TRUE
+</pre></div>
+</div></div>
+    
+
+<div class="chunk" id="unnamed-chunk-27"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">datos2_mod</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad
+## 1    77   1.63   23
+## 2    58   1.63   23
+## 3    89   1.85   26
+## 4    55   1.62   23
+## 5    47   1.60   26
+## 6    60   1.63   26
+## 7    54   1.70   22
+## 8    58   1.65   23
+## 9    75   1.78   26
+## 10   65   1.70   24
+## 11   82   1.77   28
+## 12   85   1.83   42
+## 13   75   1.74   25
+## 14   65   1.65   26
+</pre></div>
+</div></div>
+    
+
+	<br>
+	<p>Volvemos a llamar a las funciones <i>ggplot</i> pero para el caso
+	de <i>Datos2.txt</i>, teniendo en cuenta que no hay que invocar la llamada
+	de su libro ya que se había realizado anteriormente.</p>
+<div class="chunk" id="unnamed-chunk-28"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">ggplot</span><span class="hl std">(</span><span class="hl kwc">data</span><span class="hl std">=datos2,</span> <span class="hl kwd">aes</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=Edad,</span> <span class="hl kwc">y</span><span class="hl std">=Peso))</span><span class="hl opt">+</span><span class="hl kwd">geom_point</span><span class="hl std">()</span><span class="hl opt">+</span>
+        <span class="hl kwd">theme_stata</span><span class="hl std">()</span><span class="hl opt">+</span><span class="hl kwd">ggtitle</span><span class="hl std">(</span><span class="hl str">&quot;Relacion Edad y Peso (Datos2.txt)&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" class="plot" /></div></div>
+    
+
+<div class="chunk" id="unnamed-chunk-29"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">ggplot</span><span class="hl std">(</span><span class="hl kwc">data</span><span class="hl std">=datos2,</span> <span class="hl kwd">aes</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=Altura,</span> <span class="hl kwc">y</span><span class="hl std">=Edad))</span><span class="hl opt">+</span><span class="hl kwd">geom_point</span><span class="hl std">()</span><span class="hl opt">+</span>
+        <span class="hl kwd">theme_stata</span><span class="hl std">()</span><span class="hl opt">+</span><span class="hl kwd">ggtitle</span><span class="hl std">(</span><span class="hl str">&quot;Relacion Altura y Edad (Datos2.txt)&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" class="plot" /></div></div>
+    
+	<p>Vemos que se trata de un dataset de personas de entre 50 y 90 kg,
+	en torno a 20-30 años de edad (a excepción de un outlier de unos 45 años)
+	y altura variable, desde 1,60 a 1,85 metros.</p>
+	
+	<br>
+	<p>Realizamos otros tipos de gráficos. Mostramos a continuación un diagrama de barras del archivo.
+	Recordamos que tanto para este gráfico como para el histograma de abajo se ha hecho uso de la función <i>help</i>,
+	donde hemos podido informarnos acerca de todos sus parámetros y así hacer el gráfico más atractivo.</p>
+	
+<div class="chunk" id="unnamed-chunk-30"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(barplot)</span>
+</pre></div>
+</div></div>
+
+<div class="chunk" id="unnamed-chunk-31"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(hist)</span>
+</pre></div>
+</div></div>
+
+<div class="chunk" id="unnamed-chunk-32"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(datos</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Peso&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;yellow&quot;</span><span class="hl std">,</span><span class="hl str">&quot;red&quot;</span><span class="hl std">),</span>
+        <span class="hl kwc">names.arg</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Muestras&quot;</span><span class="hl std">),</span> <span class="hl kwc">density</span><span class="hl std">=</span><span class="hl num">50</span><span class="hl std">,</span> <span class="hl kwc">border</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Kilogramos&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" class="plot" /></div></div>
+    	
+	<p>Presentamos un problema de estética en este primer diagrama ya que debido al
+	gran número de instancias, se crean demasiadas barras y quizás es conveniente
+	usar otro tipo de gráfico.</p>
+
+	<p>Por ello, introducimos los histogramas que, para este tipo de situaciones, 
+	resultan mucho más visuales y, como consecuencia, la 
+	información reflejada se entiende mucho mejor</p>
+
+<div class="chunk" id="unnamed-chunk-33"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">hist</span><span class="hl std">(datos</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Peso&quot;</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;yellow&quot;</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Kilogramos&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">,</span> <span class="hl kwc">density</span><span class="hl std">=</span><span class="hl num">120</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" class="plot" /></div></div>
+    
+        
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>

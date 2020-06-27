@@ -1,0 +1,29 @@
+La semana pasada vimos en clase hasta la página 47. Es importante que escribas las funciones de simulación de 
+la extracción de cartas de una baraja, y que para cada una hagas el estudio de un parámetro de interés, como hacemos
+ con la función DistriAses y analizando los resultados con summary o hist. Puedes plantear ejercicios similares 
+con otros parámetros o con otros experimentos, como lanzar varios dados o varias monedas.
+
+Debes estudiar del mismo modo los epígrafes 3.5.6 al 3.5.8
+3.6 y 3.7 pueden saltarse, pero 3.8 es de una importancia fundamental para comprender el mecanismo por 
+el que se puede ampliar R añadiendo nuevos libros.
+
+En el capítulo 4 puedes leer por encima hasta 4.1.4 inclusive, pero los apartados interesantes son 4.1.5, 4.1.6 
+(que ya hemos visto en clase) y 4.2, y en este último las funciones read.csv y read.csv2.
+
+Los archivos
+http://www.ugr.es/local/andresgc/Datos.txt
+http://www.ugr.es/local/andresgc/Datos2.txt
+contienen datos que puedes usar para hacer pruebas de lo estudiado (pueden leerse directamente sin tener que descargarlos).
+Con summary, hist y boxplot puedes hacer análisis elementales de estos datos. (Utiliza la función help para saber lo 
+que hacen estas funciones). También puedes buscar en Google (u otro buscador que te guste más) información por 
+ejemplo de "boxplot R" (A mí me da 3.770.000 resultados). Espero que haya al menos uno que sea interesante.
+
+En 4.3 puedes ver órdenes para salvar y recuperar objetos de tu sesión de R.
+4.4 puedes leerlo por encima.
+El apartado 4.5 (que complementa el 3.8) es fundamental. Lee los ejemplos y prueba a cargar y descargar libros 
+(los que sean) y consulta las ayudas de los mismos.
+De todo el trabajo que realices envíame una copia en un archivo zip cuyo nombre sea el formado por tu nombre y apellidos.
+La evaluación de ese trabajo formará parte de la evaluación final del curso. El plazo de entrega es el 26 de marzo. 
+Mándamelo desde tu correo de ugr.
+
+Si tienes dudas, puedes consultármelas en andresgc@ugr.es. Indica en el asunto del correo DUDA de Nombre y apellidos.

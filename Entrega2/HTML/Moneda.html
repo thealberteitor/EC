@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Estadística Computacional</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="principal.html">Estadística<span class="logo_colour">Computacional</span></a></h1>
+          <h2>Uso del paquete Knitr para la generación automática de código HTML</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="principal.html">Principal</a></li>
+          <li><a href="baraja.html">Baraja de Cartas</a></li>
+          <li class="selected"><a href="moneda.html">Moneda</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="datos.html">Datos y Datos2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+
+            <h3>Alberto J.Durán López</h3>
+            <h4>Estadística Computacional</h4>
+            <h5>05/04/2020</h5>
+            <p>Ing. Informática y Matemáticas </p>  
+	    <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/logoalter1.jpg" alt="Search" title="Search" />
+	    <p>  </p>
+	    <p> Pulse <a href="https://github.com/thealberteitor">aquí</a> para ver más proyectos personales</p> 
+
+	</div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Enlaces de interes</h3>
+            <ul>
+	      <li>E-mail: albduranlopez@correo.ugr.es  </li>
+              <li><a href="https://www.r-project.org/">Documentación de R</a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Search</h3>
+            <form method="post" action="#" id="search_form">
+              <p>
+                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+              </p>
+            </form>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+       
+	<h2>Simulación del lanzamiento de una moneda</h2>
+
+	<p>Programamos la Simulación del lanzamiento de una moneda.
+	Como norma general, se suele pensar que la probabilidad de salir
+	cara o cruz en una moneda es del 50%. Sin embargo, para jugar un 
+	poco más con las variables, introducimos otra nueva opción, que la moneda
+	caiga de canto. Según estudios del matemático <strong>Perdi Diaconis </strong>
+	establecen que en torno a 1 de cada 6000 veces (en tiradas perfectas,
+	sin vibraciones ni viento) saldrá de canto. Bien es cierto que existen
+	otros factores que pueden influir, como que la moneda está en el
+	momento inicial con la cara hacia arriba o no, pero esos factores
+	no se incluirán en nuestro experimento.  </p>
+
+	<br>
+	<p>Creamos una pequeña función que calcula la probabilidad de 1/6000</p>
+	<p>Generamos un número aleatorio. Si ese número es el 1 devolvemos TRUE,
+	realmente el valor 1 es indiferente, funcionaría igual sustituyendo el 
+	1 por cualquier valor entre el 1 y el 6000.</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># 1/6000 de prob. de salir canto</span>
+<span class="hl std">canto</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(){</span>
+  <span class="hl std">v</span><span class="hl kwb">&lt;-</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6000</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">)</span>
+  <span class="hl kwa">if</span><span class="hl std">(v</span><span class="hl opt">==</span><span class="hl num">1</span><span class="hl std">)</span>
+    <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+  <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">FALSE</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+
+	<br>
+	<p>Añadimos el código del lanzamiento de moneda. En él,
+	primero se comprobará si la moneda ha salido de canto y, en 
+	caso contrario, asignará la misma probabilidad a salir cara o cruz,
+	llamando a la función <i>sample</i>.</p>
+
+
+	<br>
+	<p>Ahora, llamamos a la función anterior con diferentes valores
+	de <strong>n</strong>. Con los resultados podemos realizar infinidad
+	de experimentos. Creamos, por ejemplo, un data.frame que mostramos
+	a continuación: </p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">Lanz_moneda</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">10</span><span class="hl std">){</span>
+  <span class="hl std">cara</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl std">cruz</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl std">canto</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl kwa">for</span><span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n){</span>
+    <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">canto</span><span class="hl std">()</span><span class="hl opt">==</span><span class="hl num">TRUE</span><span class="hl std">)</span>
+      <span class="hl std">canto</span><span class="hl kwb">=</span><span class="hl std">canto</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl kwa">else</span><span class="hl std">{</span>
+      <span class="hl std">random</span><span class="hl kwb">=</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwc">size</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+      <span class="hl kwa">if</span><span class="hl std">(random</span><span class="hl opt">==</span><span class="hl num">0</span><span class="hl std">)</span>
+        <span class="hl std">cara</span><span class="hl kwb">=</span><span class="hl std">cara</span><span class="hl opt">+</span><span class="hl num">1</span>
+      <span class="hl kwa">else</span>
+        <span class="hl std">cruz</span><span class="hl kwb">=</span><span class="hl std">cruz</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl std">}</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(cara, cruz, canto))</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+	<br>
+
+
+
+
+
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">help</span><span class="hl std">(data.frame)</span>
+</pre></div>
+</div></div>
+
+
+
+
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">nombres</span><span class="hl kwb">&lt;-</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Cruz&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Cara&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;Canto&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+
+
+
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">hoja_experimentos</span><span class="hl kwb">&lt;-</span><span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">row_names</span><span class="hl std">=nombres,</span> <span class="hl kwc">n_50</span><span class="hl std">=</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">50</span><span class="hl std">),</span>
+        <span class="hl kwc">n_500</span><span class="hl std">=</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">500</span><span class="hl std">),</span><span class="hl kwc">n_5000</span><span class="hl std">=</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">5000</span><span class="hl std">))</span>
+</pre></div>
+</div></div>
+
+
+
+
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">hoja_experimento</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##       n_50 n_500 n_5000 n_15000
+## Cara    28   248   2508    7532
+## Cruz    22   252   2492    7463
+## Canto    0     0      0       5
+</pre></div>
+</div></div>
+
+
+	<br>
+	<p>Hemos asignado los nombres de las filas en la llamada a la
+	función y, en el resto de parámetros, llamamos a la función
+	<i>Lanz_moneda</i> para así crear una columna con los resultados
+	de cada llamada. Veamos que para <strong>n=50</strong> la moneda
+	no ha caido prácticamente de canto ninguna vez, mientras que para
+	<strong>n=15000</strong> sí. Juguemos un poco más con este experimento:</p>
+	
+
+	<br>
+	<p>Probemos ahora el gráfico <i>barplot</i>.</p>
+
+
+	<p>Realizaremos 4 llamadas a la función anterior, aumentando el valor
+	de las tiradas y comprobando que a mayor valor de <strong>n</strong>,
+	las proporciones cara y cruz se igualarán.</p>
+	
+
+
+
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">5</span><span class="hl std">),</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">,</span><span class="hl str">&quot;canto&quot;</span><span class="hl std">),</span>
+                        <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Lanzamiendo de 5 monedas&quot;</span><span class="hl std">,</span>
+                        <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Número de apariciones&quot;</span><span class="hl std">,</span>
+                        <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;seagreen&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamedmoneda5.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">50</span><span class="hl std">),</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">,</span><span class="hl str">&quot;canto&quot;</span><span class="hl std">),</span>
+                         <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Lanzamiendo de 50 monedas&quot;</span><span class="hl std">,</span>
+                         <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Número de apariciones&quot;</span><span class="hl std">,</span>
+                         <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;seagreen&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamedmoneda50.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+
+
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">5000</span><span class="hl std">),</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">,</span><span class="hl str">&quot;canto&quot;</span><span class="hl std">),</span>
+                           <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Lanzamiendo de 5000 monedas&quot;</span><span class="hl std">,</span>
+                           <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Número de apariciones&quot;</span><span class="hl std">,</span>
+                           <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;seagreen&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamedmoneda5000.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+
+
+
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">Lanz_moneda</span><span class="hl std">(</span><span class="hl num">100000</span><span class="hl std">),</span> <span class="hl kwc">names.arg</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;cara&quot;</span><span class="hl std">,</span><span class="hl str">&quot;cruz&quot;</span><span class="hl std">,</span><span class="hl str">&quot;canto&quot;</span><span class="hl std">),</span>
+                             <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Lanzamiendo de 100000 monedas&quot;</span><span class="hl std">,</span>
+                             <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Número de apariciones&quot;</span><span class="hl std">,</span>
+                             <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;orange&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;black&quot;</span><span class="hl std">,</span><span class="hl str">&quot;seagreen&quot;</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamedmoneda1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div></div>
+
+
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="principal.html">Principal</a> | <a href="baraja.html">Baraja de Cartas</a> | <a href="moneda.html">Moneda</a> | <a href="dados.html">Dados</a> | <a href="datos.html">Datos y Datos2</a></p>
+      <p>Copyright &copy;  | HTML5 | CSS </p>
+    </div>
+  </div>
+</body>
+</html>
